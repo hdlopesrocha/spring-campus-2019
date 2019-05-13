@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form">
+      <div class="form-group">
+        <label for="squareIterations">Sawtooth Wave Iterations</label>
+        <input id="squareIterations" class="form-control" type="range" min="0" max="30" step="1" [(ngModel)]="iterations" (change)="setIterations()"/> {{iterations}}
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-10">
+    <app-canvas-chart style="width: 100%" [array]="samples" [width]="800" [height]="200" [minX]="minX" [maxX]="maxX" [minY]="-2" [maxY]="2"></app-canvas-chart>
+  </div>
+</div>
