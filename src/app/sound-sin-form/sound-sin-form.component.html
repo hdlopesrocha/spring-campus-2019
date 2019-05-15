@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mt-4">
+      <div class="card-header">
+        <h4>Wave Equation</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form">
+              <div class="form-group">
+                <label for="amplitude">Amplitude</label>
+                <input id="amplitude" class="form-control" type="range" min="0" max="5" step="0.1" [(ngModel)]="amplitude" (change)="sinWave()"/> {{amplitude}}
+              </div>
+
+              <div class="form-group">
+                <label for="frequency">Frequency</label>
+                <input id="frequency" class="form-control" type="range" min="1" max="10"  step="0.1" [(ngModel)]="frequency" (change)="sinWave()"/> {{frequency}}
+              </div>
+
+              <div class="form-group">
+                <label for="phase">Phase</label>
+                <input id="phase" class="form-control" type="range" min="0" max="20"  step="0.2" [(ngModel)]="phase" (change)="sinWave()"/> {{phase}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <app-canvas-chart style="width: 100%" [array]="samples" [width]="800" [height]="600" [minX]="minX" [maxX]="maxX" [minY]="-5" [maxY]="5"></app-canvas-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

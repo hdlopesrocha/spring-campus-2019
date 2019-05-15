@@ -1,14 +1,35 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="form">
-      <div class="form-group">
-        <label for="squareIterations">Square Wave Iterations</label>
-        <input id="squareIterations" class="form-control" type="range" min="0" max="30" step="1" [(ngModel)]="iterations" (change)="setIterations()"/> {{iterations}}
+    <div class="card mt-4">
+      <div class="card-header">
+        <h4>Square Wave</h4>
       </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form">
+              <div class="form-group">
+                <label for="squareIterations">Iterations</label>
+                <input id="squareIterations" class="form-control" type="range" min="0" max="30" step="1" [(ngModel)]="iterations" (change)="setIterations()"/> {{iterations}}
+              </div>
 
+            </div>
+          </div>
+          <div class="col-md-12">
+            <app-canvas-chart style="width: 100%" [array]="samples" [width]="800" [height]="200" [minX]="minX" [maxX]="maxX" [minY]="-2" [maxY]="2"></app-canvas-chart>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="pull-right">
+          <div *ngIf="!soundEnabled" class="btn btn-success" (click)="toggleSound()">
+            <i class="fa fa-play" aria-hidden="true"></i>
+          </div>
+          <div *ngIf="soundEnabled" class="btn btn-danger" (click)="toggleSound()">
+            <i class="fa fa-pause" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-md-10">
-    <app-canvas-chart style="width: 100%" [array]="samples" [width]="800" [height]="200" [minX]="minX" [maxX]="maxX" [minY]="-2" [maxY]="2"></app-canvas-chart>
   </div>
 </div>

@@ -7,23 +7,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SoundSimpleDemoComponent implements OnInit {
   private audioContext: AudioContext;
+  private soundEnabled = false;
+
   private oscilator: OscillatorNode;
   oscillatorFrequency = 0;
 
   constructor() {
     this.audioContext = new AudioContext();
-    this.oscilator = this.audioContext.createOscillator();
-    this.oscilator.start(0);
-    this.oscilator.connect(this.audioContext.destination);
-    this.setOscillatorFrequency(0); }
+  }
 
   ngOnInit() {
   }
 
+  toggleSound() {
+    this.soundEnabled = !this.soundEnabled;
+    if(this.soundEnabled) {
+      this.oscilator = this.audioContext.createOscillator();
+      this.oscilator.connect(this.audioContext.destination);
+      this.oscilator.start(0);
+      this.updateOscillatorFrequency();
+    } else {
+      this.oscilator.stop(0);
+      this.oscilator = null;
+    }
+  }
 
   setOscillatorFrequency(value) {
     this.oscillatorFrequency = value;
-    this.oscilator.frequency.value = this.oscillatorFrequency;
+    this.updateOscillatorFrequency();
+  }
+
+  updateOscillatorFrequency() {
+    if(this.oscilator) {
+      this.oscilator.frequency.value = this.oscillatorFrequency;
+    }
   }
 
 }

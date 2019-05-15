@@ -11,6 +11,8 @@ import { SoundIntroComponent } from './sound-intro/sound-intro.component';
 import { SoundSquareWaveComponent } from './sound-square-wave/sound-square-wave.component';
 import { SoundSawtoothWaveComponent } from './sound-sawtooth-wave/sound-sawtooth-wave.component';
 import { SoundSimpleDemoComponent } from './sound-simple-demo/sound-simple-demo.component';
+import { SoundSinFormComponent } from './sound-sin-form/sound-sin-form.component';
+import { SoundNoiseWaveComponent } from './sound-noise-wave/sound-noise-wave.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SoundSimpleDemoComponent } from './sound-simple-demo/sound-simple-demo.
     SoundIntroComponent,
     SoundSquareWaveComponent,
     SoundSawtoothWaveComponent,
-    SoundSimpleDemoComponent
+    SoundSimpleDemoComponent,
+    SoundSinFormComponent,
+    SoundNoiseWaveComponent
   ],
   imports: [
     ReactiveFormsModule,
