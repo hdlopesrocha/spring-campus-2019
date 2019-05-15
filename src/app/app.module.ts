@@ -13,6 +13,7 @@ import { SoundSawtoothWaveComponent } from './sound-sawtooth-wave/sound-sawtooth
 import { SoundSimpleDemoComponent } from './sound-simple-demo/sound-simple-demo.component';
 import { SoundSinFormComponent } from './sound-sin-form/sound-sin-form.component';
 import { SoundNoiseWaveComponent } from './sound-noise-wave/sound-noise-wave.component';
+import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SoundNoiseWaveComponent } from './sound-noise-wave/sound-noise-wave.com
     SoundSawtoothWaveComponent,
     SoundSimpleDemoComponent,
     SoundSinFormComponent,
-    SoundNoiseWaveComponent
+    SoundNoiseWaveComponent,
+    ToggleButtonComponent
   ],
   imports: [
     ReactiveFormsModule,

@@ -19,9 +19,9 @@ export class SoundSimpleDemoComponent implements OnInit {
   ngOnInit() {
   }
 
-  toggleSound() {
-    this.soundEnabled = !this.soundEnabled;
-    if(this.soundEnabled) {
+  toggleSound(value: boolean) {
+    this.soundEnabled = value;
+    if(value) {
       this.oscilator = this.audioContext.createOscillator();
       this.oscilator.connect(this.audioContext.destination);
       this.oscilator.start(0);

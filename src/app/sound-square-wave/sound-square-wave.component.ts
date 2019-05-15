@@ -19,9 +19,9 @@ export class SoundSquareWaveComponent implements OnInit {
     this.audioContext = new AudioContext();
   }
 
-  toggleSound() {
-    this.soundEnabled = !this.soundEnabled;
-    if(this.soundEnabled) {
+  toggleSound(value: boolean) {
+    this.soundEnabled = value;
+    if(value) {
       this.source = this.audioContext.createBufferSource();
       this.updateSound();
       this.source.loop = true;

@@ -61,12 +61,7 @@
       </div>
       <div class="card-footer">
         <div class="pull-right">
-          <div *ngIf="!soundEnabled" class="btn btn-success" (click)="toggleSound()">
-            <i class="fa fa-play" aria-hidden="true"></i>
-          </div>
-          <div *ngIf="soundEnabled" class="btn btn-danger" (click)="toggleSound()">
-            <i class="fa fa-pause" aria-hidden="true"></i>
-          </div>
+         <app-toggle-button (changeEmitter)="toggleSound($event)"></app-toggle-button>
         </div>
       </div>
     </div>
