@@ -14,6 +14,10 @@ export class SoundSawtoothWaveComponent implements OnInit {
   iterations = 1;
   maxX = 4;
   minX = 0;
+  //Math.sin(2.0 * Math.PI *  k * f * t) / k;
+  initialFormula = '\\frac{2A}{\\pi} \\sum_{k=1}^{\\infty} (-1)^{k} \\frac{\\sin(k \\times 2\\pi f t)}{k}, A=1, f=1 ';
+  private sums = '';
+  private processing = false;
 
   constructor() {
     this.audioContext = new AudioContext();
@@ -67,8 +71,34 @@ export class SoundSawtoothWaveComponent implements OnInit {
     if(this.soundEnabled) {
       this.updateSound();
     }
+    this.updateFormulas();
     this.updateChart();
   }
+
+  updateFormulas() {
+    let sums = '';
+    this.processing = true;
+    for (let k = 1; k <= this.iterations ; ++k) {
+      const sig = Math.pow(-1, k);
+
+      sums += sig > 0 ? '+' : '-';
+
+      sums += '\\frac{2\\sin('+ k +'\\times 2\\pi t)}{' + k + '\\pi}';
+      if ( !(k % 6)) {
+        sums += '\\\\';
+      }
+    }
+
+    if(this.iterations == 0) {
+      sums += '0';
+    }
+
+    setTimeout(() => {
+      this.sums = sums;
+      this.processing = false;
+    }, 10);
+  }
+
 
   updateChart() {
     const A = 1;

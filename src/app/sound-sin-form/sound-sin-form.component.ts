@@ -12,6 +12,7 @@ export class SoundSinFormComponent implements OnInit {
   frequency = 1;
   amplitude = 1;
   phase = 0;
+  initialFormula = 'f(t) = A\\sin(\\omega t +\\phi), \\omega = 2\\pi f';
 
   constructor() { }
 

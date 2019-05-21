@@ -14,6 +14,8 @@ import { SoundSimpleDemoComponent } from './sound-simple-demo/sound-simple-demo.
 import { SoundSinFormComponent } from './sound-sin-form/sound-sin-form.component';
 import { SoundNoiseWaveComponent } from './sound-noise-wave/sound-noise-wave.component';
 import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
+import {MathJaxModule} from "ngx-mathjax";
+import {SoundSquareFourierComponent} from "./sound-square-fourier/sound-square-fourier.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
     CanvasChartComponent,
     SoundIntroComponent,
     SoundSquareWaveComponent,
+    SoundSquareFourierComponent,
     SoundSawtoothWaveComponent,
     SoundSimpleDemoComponent,
     SoundSinFormComponent,
@@ -33,6 +36,7 @@ import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
     FormsModule,
     AngularFontAwesomeModule,
     BrowserModule,
+    MathJaxModule.config(),
     AppRoutingModule
   ],
   providers: [],

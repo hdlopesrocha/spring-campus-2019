@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card mt-4">
       <div class="card-header">
-        <h4>Square Wave</h4>
+        <h4>Fourier Transform (Square Wave)</h4>
       </div>
       <div class="card-body">
         <div class="row">
@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="col-md-12">
-            <app-canvas-chart style="width: 100%" [array]="samples" [width]="800" [height]="200" [minX]="minX" [maxX]="maxX" [minY]="-2" [maxY]="2"></app-canvas-chart>
+            <app-canvas-chart style="width: 100%" [array]="samplesFFT" stroke="2" [width]="800" [height]="200" [minX]="minX" [maxX]="maxX" [minY]="-0.1" [maxY]="1.1"></app-canvas-chart>
           </div>
           <div class="col-md-12" [mathjax]>
             $${{initialFormula}}$$
@@ -26,9 +26,7 @@
         </div>
       </div>
       <div class="card-footer">
-        <div class="pull-right">
-         <app-toggle-button (changeEmitter)="toggleSound($event)"></app-toggle-button>
-        </div>
+
       </div>
     </div>
   </div>

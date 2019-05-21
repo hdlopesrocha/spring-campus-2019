@@ -17,6 +17,12 @@
         <div class="col-md-12">
           <app-canvas-chart style="width: 100%" [array]="samples" [width]="800" [height]="200" [minX]="minX" [maxX]="maxX" [minY]="-2" [maxY]="2"></app-canvas-chart>
         </div>
+        <div class="col-md-12" [mathjax]>
+          $${{initialFormula}}$$
+        </div>
+        <div class="col-md-12" [mathjax] *ngIf="!processing">
+          $${{sums}}$$
+        </div>
       </div>
       <div class="card-footer">
         <div class="pull-right">

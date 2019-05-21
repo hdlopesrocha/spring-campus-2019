@@ -22,6 +22,9 @@ export class CanvasChartComponent implements OnInit, AfterViewInit, OnChanges {
   @Input()
   public maxY;
 
+  @Input()
+  public stroke = 3;
+
   @ViewChild('canvas') public canvas: ElementRef;
   context: CanvasRenderingContext2D;
   constructor() { }
@@ -38,14 +41,14 @@ export class CanvasChartComponent implements OnInit, AfterViewInit, OnChanges {
     this.context = this.canvas.nativeElement.getContext('2d');
     this.clearCanvas();
     this.context.beginPath();
-    this.context.lineWidth = 3;
+    this.context.lineWidth = this.stroke;
     this.context.strokeStyle = '#000';
 
     let first = true;
 
     for (const point of this.array) {
       const x = Math.floor((point[0] - this.minX) / (this.maxX - this.minX) * this.width);
-      const y = Math.floor((point[1] - this.minY) / (this.maxY - this.minY) * this.height);
+      const y = this.height - Math.floor((point[1] - this.minY) / (this.maxY - this.minY) * this.height);
 
       if (first) {
         first = false;
