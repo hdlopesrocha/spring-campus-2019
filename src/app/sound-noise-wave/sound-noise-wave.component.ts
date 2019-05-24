@@ -11,8 +11,6 @@ private soundEnabled = false;
 private source: AudioBufferSourceNode;
 
   samples = [];
-  maxX = 4;
-  minX = 0;
 
   constructor() {
     this.audioContext = new AudioContext();
@@ -39,11 +37,10 @@ private source: AudioBufferSourceNode;
   getSound() {
     var myArrayBuffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
 
-    for (var channel = 0; channel < myArrayBuffer.numberOfChannels; channel++) {
-      var nowBuffering = myArrayBuffer.getChannelData(channel);
-      for (var i = 0; i < myArrayBuffer.length; i++) {
-        let x = Math.random()*2-1;
-        nowBuffering[i] = x;
+    for (let channel = 0; channel < myArrayBuffer.numberOfChannels; channel++) {
+      const nowBuffering = myArrayBuffer.getChannelData(channel);
+      for (let i = 0; i < myArrayBuffer.length; i++) {
+        nowBuffering[i] = Math.random()*2-1;
       }
     }
     return myArrayBuffer;
@@ -61,14 +58,10 @@ private source: AudioBufferSourceNode;
   }
 
   updateChart() {
-    const A = 1;
-    const f = 1;
-
     this.samples = [];
-
-    for (let t = 0; t < 2 * Math.PI; t += 0.01 ) {
+    for (let t = 0; t < 2; t += 0.005 ) {
       let x = Math.random()*2-1;
-      this.samples.push([t, x]);
+      this.samples.push({x:t, y:x});
     }
   }
 }

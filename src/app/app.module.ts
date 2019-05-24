@@ -16,6 +16,7 @@ import { SoundNoiseWaveComponent } from './sound-noise-wave/sound-noise-wave.com
 import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
 import {MathJaxModule} from "ngx-mathjax";
 import {SoundSquareFourierComponent} from "./sound-square-fourier/sound-square-fourier.component";
+import { D3chartComponent } from './d3chart/d3chart.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {SoundSquareFourierComponent} from "./sound-square-fourier/sound-square-f
     SoundSimpleDemoComponent,
     SoundSinFormComponent,
     SoundNoiseWaveComponent,
-    ToggleButtonComponent
+    ToggleButtonComponent,
+    D3chartComponent
   ],
   imports: [
     ReactiveFormsModule,

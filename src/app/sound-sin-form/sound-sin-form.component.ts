@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SoundSinFormComponent implements OnInit {
   samples = [];
-  maxX = 2 * Math.PI;
-  minX = 0;
   frequency = 1;
   amplitude = 1;
   phase = 0;
@@ -23,24 +21,10 @@ export class SoundSinFormComponent implements OnInit {
   sinWave() {
     this.samples = [];
 
-    for (let i = 0; i < 2 * Math.PI; i += 0.05 ) {
-      this.samples.push([i, this.amplitude * Math.sin(i * this.frequency + this.phase)]);
+    for (let t = 0; t <= 2; t += 0.005 ) {
+      const x = this.amplitude * Math.sin( 2 * Math.PI * this.frequency*t + this.phase);
+      this.samples.push({x:t, y:x});
     }
-  }
-
-
-  randomWave() {
-    this.samples = [];
-
-    for (let i = 0; i < this.maxX; ++i) {
-      this.samples.push([i, Math.random() * 128]);
-    }
-  }
-
-  startWave() {
-    setInterval(() => {
-      this.randomWave();
-    }, 1000);
   }
 
 }

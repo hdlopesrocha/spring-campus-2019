@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="col-md-10">
-            <app-canvas-chart style="width: 100%" [array]="samples" [width]="800" [height]="600" [minX]="minX" [maxX]="maxX" [minY]="-5" [maxY]="5"></app-canvas-chart>
+            <app-d3chart [points]="samples" [minX]="0" [maxX]="2" [minY]="-5" [maxY]="5"></app-d3chart>
           </div>
         </div>
       </div>
