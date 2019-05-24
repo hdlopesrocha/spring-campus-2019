@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mt-4">
+      <div class="card-header">
+        <h4>Fourier Transform (with music)</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Pick an mp3 file<input #data type="file" name="file" (change)="processFile(data)"></p>
+          </div>
+          <div class="col-md-12">
+            <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="900" [height]="300"></app-d3chart>
+          </div>
+          <div class="col-md-12">
+            <app-d3chart [points]="dataNormalized" [minX]="0" [maxX]="1" [minY]="-1" [maxY]="1" [width]="900" [height]="300"></app-d3chart>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

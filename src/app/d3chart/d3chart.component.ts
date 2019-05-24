@@ -34,10 +34,13 @@ export class D3chartComponent implements OnInit {
   minY: number;
   @Input()
   maxY: number;
+  @Input()
+  width: number;
+  @Input()
+  height: number;
+
 
   private margin = {top: 20, right: 20, bottom: 30, left: 50};
-  private width: number;
-  private height: number;
   private x: any;
   private y: any;
   private svg: any;
