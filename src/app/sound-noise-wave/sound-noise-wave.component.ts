@@ -11,7 +11,8 @@ private soundEnabled = false;
 private source: AudioBufferSourceNode;
 
   samples = [];
-
+  minX = 0;
+  maxX = 2;
   constructor() {
     this.audioContext = new AudioContext();
   }
@@ -59,9 +60,9 @@ private source: AudioBufferSourceNode;
 
   updateChart() {
     this.samples = [];
-    for (let t = 0; t < 2; t += 0.005 ) {
-      let x = Math.random()*2-1;
-      this.samples.push({x:t, y:x});
+    for (let t = this.minX; t < this.maxX; t += 0.005 ) {
+      let y = Math.random()*2-1;
+      this.samples.push({x:t, y:y});
     }
   }
 }

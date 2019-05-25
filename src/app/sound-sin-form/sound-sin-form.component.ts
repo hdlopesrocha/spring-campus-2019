@@ -11,7 +11,8 @@ export class SoundSinFormComponent implements OnInit {
   amplitude = 1;
   phase = 0;
   initialFormula = 'f(t) = A\\sin(\\omega t +\\phi), \\omega = 2\\pi f';
-
+  minX = 0;
+  maxX = 2;
   constructor() { }
 
   ngOnInit() {
@@ -21,9 +22,9 @@ export class SoundSinFormComponent implements OnInit {
   sinWave() {
     this.samples = [];
 
-    for (let t = 0; t <= 2; t += 0.005 ) {
-      const x = this.amplitude * Math.sin( 2 * Math.PI * this.frequency*t + this.phase);
-      this.samples.push({x:t, y:x});
+    for (let t = this.minX; t <= this.maxX; t += 0.005 ) {
+      const y = this.amplitude * Math.sin( 2 * Math.PI * this.frequency*t + this.phase);
+      this.samples.push({x:t, y:y});
     }
   }
 

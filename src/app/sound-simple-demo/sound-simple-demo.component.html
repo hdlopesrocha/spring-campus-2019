@@ -61,7 +61,7 @@
       </div>
       <div class="card-footer">
         <div class="pull-right">
-         <app-toggle-button (changeEmitter)="toggleSound($event)"></app-toggle-button>
+         <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
         </div>
       </div>
     </div>

@@ -6,12 +6,12 @@
       </div>
       <div class="card-body">
         <div class="col-md-12">
-          <app-d3chart style="width: 100%" [points]="samples" [minX]="0" [maxX]="2" [minY]="-1.5" [maxY]="1.5" [width]="900" [height]="300"></app-d3chart>
+          <app-d3chart style="width: 100%" [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-1.5" [maxY]="1.5" [width]="900" [height]="300"></app-d3chart>
         </div>
       </div>
       <div class="card-footer">
         <div class="pull-right">
-          <app-toggle-button (changeEmitter)="toggleSound($event)"></app-toggle-button>
+          <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
         </div>
       </div>
     </div>

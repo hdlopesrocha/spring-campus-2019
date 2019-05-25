@@ -18,6 +18,7 @@ import {MathJaxModule} from "ngx-mathjax";
 import {SoundSquareFourierComponent} from "./sound-square-fourier/sound-square-fourier.component";
 import { D3chartComponent } from './d3chart/d3chart.component';
 import { SoundPlayerComponent } from './sound-player/sound-player.component';
+import {SoundPassFilterComponent} from "./sound-pass-filter/sound-pass-filter.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SoundPlayerComponent } from './sound-player/sound-player.component';
     SoundNoiseWaveComponent,
     ToggleButtonComponent,
     D3chartComponent,
-    SoundPlayerComponent
+    SoundPlayerComponent,
+    SoundPassFilterComponent
   ],
   imports: [
     ReactiveFormsModule,

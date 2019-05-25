@@ -15,7 +15,8 @@ export class SoundSawtoothWaveComponent implements OnInit {
   initialFormula = '\\frac{2A}{\\pi} \\sum_{k=1}^{\\infty} (-1)^{k} \\frac{\\sin(k \\times 2\\pi f t)}{k}, A=1, f=1 ';
   private sums = '';
   private processing = false;
-
+  minX = 0;
+  maxX = 2;
   constructor() {
     this.audioContext = new AudioContext();
   }
@@ -100,7 +101,7 @@ export class SoundSawtoothWaveComponent implements OnInit {
 
     this.samples = [];
 
-    for (let t = 0; t <= 3; t += 0.005 ) {
+    for (let t = this.minX; t <= this.maxX; t += 0.005 ) {
       let x = 0;
       for (let k = 1; k <= this.iterations ; ++k) {
         x += Math.pow(-1, k) * Math.sin(2.0 * Math.PI *  k * f * t) / k;

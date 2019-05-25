@@ -13,6 +13,8 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
   samples = [];
   iterations = 1;
   initialFormula = 'f(t) = \\frac{4A}{\\pi}\\sum_{k=1}^{\\infty} \\frac{\\sin((2k-1) \\times 2\\pi ft)}{2k-1}, f=1, A=1';
+  minX = 0;
+  maxX = 2;
   private sums = '';
   private processing = false;
 
@@ -100,7 +102,7 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
     const f = 1;
     this.samples = [];
 
-    for (let t = 0; t < 3; t += 0.005 ) {
+    for (let t = this.minX; t <= this.maxX; t += 0.005 ) {
       let x = 0;
       for (let k = 1; k <= this.iterations ; ++k) {
         const n = 2 * k - 1;
