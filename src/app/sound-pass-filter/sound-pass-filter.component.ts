@@ -52,6 +52,8 @@ export class SoundPassFilterComponent implements OnInit {
     if(this.isPlaying) {
       this.lowPassFilter.type = "lowpass";
       this.lowPassFilter.frequency.value = this.lowPass;
+      this.highPassFilter.Q.value = 12;
+      this.highPassFilter.gain.value = 0;
     }
   }
 
@@ -59,6 +61,8 @@ export class SoundPassFilterComponent implements OnInit {
     if(this.isPlaying) {
       this.highPassFilter.type = "highpass";
       this.highPassFilter.frequency.value = this.highPass;
+      this.highPassFilter.Q.value = 12;
+      this.highPassFilter.gain.value = 0;
     }
   }
 

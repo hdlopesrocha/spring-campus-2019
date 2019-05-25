@@ -19,6 +19,9 @@ import {SoundSquareFourierComponent} from "./sound-square-fourier/sound-square-f
 import { D3chartComponent } from './d3chart/d3chart.component';
 import { SoundPlayerComponent } from './sound-player/sound-player.component';
 import {SoundPassFilterComponent} from "./sound-pass-filter/sound-pass-filter.component";
+import {SoundKickWaveComponent} from "./sound-kick-wave/sound-kick-wave.component";
+import {SoundSnareWaveComponent} from "./sound-snare-wave/sound-snare-wave.component";
+import { SoundPianoComponent } from './sound-piano/sound-piano.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import {SoundPassFilterComponent} from "./sound-pass-filter/sound-pass-filter.co
     ToggleButtonComponent,
     D3chartComponent,
     SoundPlayerComponent,
-    SoundPassFilterComponent
+    SoundPassFilterComponent,
+    SoundKickWaveComponent,
+    SoundSnareWaveComponent,
+    SoundPianoComponent
   ],
   imports: [
     ReactiveFormsModule,

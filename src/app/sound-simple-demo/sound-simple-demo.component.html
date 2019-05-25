@@ -11,52 +11,21 @@
             <div class="form">
               <div class="form-group">
                 <label for="oscillatorFrequency">Oscillator Frequency</label>
-                <input id="oscillatorFrequency" class="form-control" type="range" min="0" max="20000" step="50" [(ngModel)]="oscillatorFrequency" (change)="updateOscillatorFrequency()"/> {{oscillatorFrequency}}
+                <input id="oscillatorFrequency" class="form-control" type="range" min="0" max="20000" step="50" [(ngModel)]="oscillatorFrequency" (change)="updateOscillatorFrequency()"/>
+
+                <h3>{{oscillatorFrequency}}Hz {{currentNoteName ? '('+currentNoteName+')' : ''}}</h3>
               </div>
             </div>
           </div>
-
+          <div class="row">
+            <div class="col-md-12">
+               <app-sound-piano [keys]="keys" [onClick]="pianoClick.bind(this)"></app-sound-piano>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           *** Talk about the scale ***<br>
 
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(440.00)">A5 (440.00 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(466.16)">A#5 (466.16 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(493.88)">B5 (493.88 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(523.25)">C5 (523.25 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(554.37)">C#5 (554.37 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(587.33)">D5 (587.33 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(622.25)">D#5 (622.25 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(659.25)">E5 (659.25 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(698.46)">F5 (698.46 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(739.99)">F#5 (739.99 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(783.99)">G5 (783.99 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(830.61)">G#5 (830.61 Hz)</button>
-          </div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-primary" (click)="setOscillatorFrequency(880.00)">A6 (880.00 Hz)</button>
-          </div>
         </div>
       </div>
       <div class="card-footer">
