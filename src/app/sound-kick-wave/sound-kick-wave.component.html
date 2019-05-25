@@ -5,29 +5,35 @@
         <h4>Kick (with decay)</h4>
       </div>
       <div class="card-body">
-        <div class="col-md-12" #divA>
-          <app-d3chart [points]="base" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
-        </div>
-        <div class="col-md-12" [mathjax]>
-          $${{baseFormula}}$$
-        </div>
+        <div class="row">
+          <div class="col-md-6" #divA>
+            <app-d3chart [points]="base" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+            <div class="col-md-12" [mathjax]>
+              $${{baseFormula}}$$
+            </div>
+          </div>
 
 
-        <div class="col-md-12" #divB>
-          <app-d3chart [points]="multiplier" [minX]="minX" [maxX]="maxX" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
+          <div class="col-md-6" #divB>
+            <app-d3chart [points]="multiplier" [minX]="minX" [maxX]="maxX" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
+            <div class="col-md-12" [mathjax]>
+              $${{multiplierFormula}}$$
+            </div>
+          </div>
+
+
         </div>
-        <div class="col-md-12" [mathjax]>
-          $${{multiplierFormula}}$$
-        </div>
+        <div class="row">
 
 
         <div class="col-md-12" #divC>
           <app-d3chart [points]="result" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divC.clientWidth-20" [height]="300"></app-d3chart>
-        </div>
-        <div class="col-md-12" [mathjax]>
-          $${{resultFormula}}$$
-        </div>
 
+          <div class="col-md-12" [mathjax]>
+            $${{resultFormula}}$$
+          </div>
+        </div>
+        </div>
       </div>
       <div class="card-footer">
         <div class="pull-right">

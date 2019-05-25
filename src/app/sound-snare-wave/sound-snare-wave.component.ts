@@ -13,13 +13,14 @@ private source: AudioBufferSourceNode;
   multiplier = [];
   result = [];
   base = [];
-
-  multiplierFormula = 'f(t) = e^{-10t}';
-  baseFormula = 'f(t) = random(t)';
-  resultFormula = 'f(t) = random(t) \\times e^{-10t}';
+  decay = 10;
+  multiplierFormula: string;
+  baseFormula: string;
+  resultFormula: string;
 
   minX = 0;
   maxX = 1;
+  private processing: boolean = false;
   constructor() {
     this.audioContext = new AudioContext();
   }
@@ -28,6 +29,7 @@ private source: AudioBufferSourceNode;
     this.soundEnabled = value;
     if(value) {
       this.source = this.audioContext.createBufferSource();
+      this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
       this.updateSound();
       this.source.loop = true;
       this.source.connect(this.audioContext.destination);
@@ -38,13 +40,8 @@ private source: AudioBufferSourceNode;
     }
   }
 
-  updateSound() {
-    this.source.buffer = this.getSound();
-  }
-
-
   getMultiplier(t: number) {
-    return Math.exp(-10*t);
+    return Math.exp(-this.decay*t);
   }
 
 
@@ -52,8 +49,8 @@ private source: AudioBufferSourceNode;
     return (Math.random()*2-1);
   }
 
-  getSound() {
-    const myArrayBuffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
+  updateSound() {
+    const myArrayBuffer = this.source.buffer;
 
     for (let channel = 0; channel < myArrayBuffer.numberOfChannels; channel++) {
       const nowBuffering = myArrayBuffer.getChannelData(channel);
@@ -66,10 +63,10 @@ private source: AudioBufferSourceNode;
   }
 
   ngOnInit() {
-    this.setIterations();
+    this.updateDecay();
   }
 
-  setIterations() {
+  update() {
     if(this.soundEnabled) {
       this.updateSound();
     }
@@ -90,5 +87,18 @@ private source: AudioBufferSourceNode;
       this.base.push({x:t, y:y});
       this.result.push({x:t, y:y*m});
     }
+  }
+
+  updateDecay() {
+    this.processing = true;
+    setTimeout(() => {
+      this.multiplierFormula = 'f(t) = e^{-'+ this.decay+'t}';
+      this.baseFormula = 'f(t) = random(t)';
+      this.resultFormula = 'f(t) = random(t) \\times e^{-'+ this.decay+'t}';
+      this.processing = false;
+    }, 10);
+
+
+    this.update();
   }
 }
