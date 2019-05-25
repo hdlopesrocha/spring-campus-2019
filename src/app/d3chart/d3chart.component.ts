@@ -16,18 +16,13 @@ export interface Point {
   styleUrls: ['./d3chart.component.scss']
 })
 export class D3chartComponent implements OnInit {
-  private _points: Point[] = [];
+  private points: Point[] = [];
 
   @ViewChild('chart')
   svgElement: ElementRef;
-  private h: number;
-  private w: number;
+  width: number;
+  height: number;
 
-  @Input()
-  set points(val: Point[]) {
-    this._points = val;
-    this.draw();
-  }
   @Input()
   minX: number;
   @Input()
@@ -36,10 +31,31 @@ export class D3chartComponent implements OnInit {
   minY: number;
   @Input()
   maxY: number;
-  @Input()
-  width: number;
-  @Input()
-  height: number;
+  @Input('width')
+  set setWidth(val: number) {
+    this.width = val;
+    if(this.isInited) {
+      this.draw();
+    }
+  }
+
+  isInited = false;
+
+  @Input('height')
+  set setHeight(val: number) {
+    this.height = val;
+    if(this.isInited) {
+      this.draw();
+    }
+  }
+
+  @Input('points')
+  set setPoints(val: Point[]) {
+    this.points = val;
+    if(this.isInited) {
+      this.draw();
+    }
+  }
 
   private margin = {top: 20, right: 20, bottom: 30, left: 50};
   private svg: any;
@@ -49,8 +65,7 @@ export class D3chartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.w = this.width - this.margin.left - this.margin.right;
-    this.h = this.height - this.margin.top - this.margin.bottom;
+    this.isInited = true;
     this.draw();
   }
 
@@ -67,32 +82,33 @@ export class D3chartComponent implements OnInit {
 
 
   draw() {
+    const w = this.width - this.margin.left - this.margin.right;
+    const h = this.height - this.margin.top - this.margin.bottom;
     this.initSvg();
 
-    const xAxis = d3Scale.scaleLinear().range([0, this.w]);
-    const yAxis = d3Scale.scaleLinear().range([this.h, 0]);
+    const xAxis = d3Scale.scaleLinear().range([0, w]);
+    const yAxis = d3Scale.scaleLinear().range([h, 0]);
 
     xAxis.domain([this.minX, this.maxX]);
     yAxis.domain([this.minY, this.maxY]);
 
     this.svg.append('g')
       .attr('class', 'axis axis--x')
-      .attr('transform', 'translate(0,' + this.h + ')')
+      .attr('transform', 'translate(0,' + h + ')')
       .call(d3Axis.axisBottom(xAxis));
 
     this.svg.append('g')
       .attr('class', 'axis axis--y')
       .call(d3Axis.axisLeft(yAxis));
 
-
-    const line = d3Shape.line()
-      .x( (d: any) => xAxis(d.x) )
-      .y( (d: any) => yAxis(d.y) );
-
-    this.svg.append('path')
-      .datum(this._points)
-      .attr('class', 'line')
-      .attr('d', line);
-
+    if(this.points && this.points.length) {
+      const line = d3Shape.line()
+        .x( (d: any) => xAxis(d.x) )
+        .y( (d: any) => yAxis(d.y) );
+      this.svg.append('path')
+        .datum(this.points)
+        .attr('class', 'line')
+        .attr('d', line);
+    }
   }
 }

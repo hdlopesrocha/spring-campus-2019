@@ -79,7 +79,7 @@ export class SoundSawtoothWaveComponent implements OnInit {
       sums += sig > 0 ? '+' : '-';
 
       sums += '\\frac{2\\sin('+ k +'\\times 2\\pi t)}{' + k + '\\pi}';
-      if ( !(k % 6)) {
+      if ( !(k % 5)) {
         sums += '\\\\';
       }
     }

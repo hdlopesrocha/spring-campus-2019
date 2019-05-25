@@ -6,8 +6,8 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-12">
-            <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="900" [height]="300"></app-d3chart>
+          <div class="col-md-12" #divA>
+            <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
           </div>
           <div class="col-md-12">
             <div class="form">

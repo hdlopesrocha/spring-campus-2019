@@ -82,7 +82,7 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
         sums += '+';
       }
       sums += '\\frac{4\\sin(' + n + '\\times 2\\pi t)}{' + n + ' \\pi}';
-      if ( !(k % 6)) {
+      if ( !(k % 5)) {
         sums += '\\\\';
       }
     }

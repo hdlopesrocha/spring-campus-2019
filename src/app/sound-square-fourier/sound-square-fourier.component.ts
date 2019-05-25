@@ -49,7 +49,7 @@ export class SoundSquareFourierComponent implements OnInit, AfterContentInit {
         sums += '+';
       }
       sums += '\\frac{4}{' + n + ' \\pi} \\sin(' + n + '\\times 2\\pi t)';
-      if ( !(k % 6)) {
+      if ( !(k % 5)) {
         sums += '\\\\';
       }
     }

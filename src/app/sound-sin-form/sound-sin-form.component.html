@@ -27,8 +27,8 @@
               </div>
             </div>
           </div>
-          <div class="col-md-10">
-            <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-5" [maxY]="5" [width]="900" [height]="300"></app-d3chart>
+          <div class="col-md-10" #div10>
+            <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-5" [maxY]="5" [width]="div10.clientWidth-20" [height]="300"></app-d3chart>
           </div>
         </div>
       </div>
