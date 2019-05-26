@@ -1,14 +1,13 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {MusicService} from "../music.service";
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-sound-square-wave',
   templateUrl: './sound-square-wave.component.html',
   styleUrls: ['./sound-square-wave.component.scss']
 })
-export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
-  private audioContext: AudioContext;
-  private soundEnabled = false;
+export class SoundSquareWaveComponent extends AudioComponent implements OnInit, AfterContentInit, OnDestroy {
   private source: AudioBufferSourceNode;
 
   samples = [];
@@ -21,7 +20,11 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
   private processing = false;
 
   constructor(public musicService: MusicService) {
-    this.audioContext = new AudioContext();
+    super();
+  }
+
+  ngOnInit() {
+
   }
 
   toggleSound(value: boolean) {
@@ -34,9 +37,8 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
       this.source.loop = true;
       this.source.connect(this.audioContext.destination);
       this.source.start();
-    } else {
-      this.source.stop();
-      this.source = null;
+    } else if(this.source) {
+      this.stopSound();
     }
   }
 
@@ -53,11 +55,6 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
     }
     return myArrayBuffer;
   }
-
-  ngOnInit() {
-  }
-
-
 
   setIterations() {
     if(this.soundEnabled) {
@@ -105,5 +102,15 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
     this.setIterations();
   }
 
+  ngOnDestroy(): void {
+    this.stopSound();
+  }
 
+  stopSound(): void {
+    this.soundEnabled = false;
+    if(this.source) {
+      this.source.stop();
+      this.source = null;
+    }
+  }
 }

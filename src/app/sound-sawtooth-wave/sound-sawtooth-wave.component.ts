@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MusicService} from "../music.service";
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-sound-sawtooth-wave',
   templateUrl: './sound-sawtooth-wave.component.html',
   styleUrls: ['./sound-sawtooth-wave.component.scss']
 })
-export class SoundSawtoothWaveComponent implements OnInit {
-  private audioContext: AudioContext;
-  private soundEnabled = false;
-  private source: AudioBufferSourceNode;
+export class SoundSawtoothWaveComponent extends AudioComponent implements OnInit, OnDestroy {
 
   samples = [];
   iterations = 1;
@@ -19,10 +17,16 @@ export class SoundSawtoothWaveComponent implements OnInit {
   minX = 0;
   maxX = 2;
   soundFrequency = 220;
+  private source: AudioBufferSourceNode;
 
   constructor(public musicService: MusicService) {
-    this.audioContext = new AudioContext();
+    super();
   }
+
+  ngOnInit() {
+    this.setIterations();
+  }
+
 
   toggleSound(value: boolean) {
     this.soundEnabled = value;
@@ -34,8 +38,7 @@ export class SoundSawtoothWaveComponent implements OnInit {
       this.source.connect(this.audioContext.destination);
       this.source.start();
     } else {
-      this.source.stop();
-      this.source = null;
+      this.stopSound();
     }
   }
 
@@ -53,10 +56,6 @@ export class SoundSawtoothWaveComponent implements OnInit {
       }
     }
     return myArrayBuffer;
-  }
-
-  ngOnInit() {
-    this.setIterations();
   }
 
   setIterations() {
@@ -100,6 +99,18 @@ export class SoundSawtoothWaveComponent implements OnInit {
 
     for (let t = this.minX; t <= this.maxX; t += 0.005 ) {
       this.samples.push({x:t, y: this.musicService.getSawtooth(t, A, f, this.iterations)});
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopSound();
+  }
+
+  stopSound(): void {
+    this.soundEnabled = false;
+    if(this.source) {
+      this.source.stop();
+      this.source = null;
     }
   }
 }

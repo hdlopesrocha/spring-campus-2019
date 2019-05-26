@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  slideNumber: number = 0;
 
-  ngOnInit() {
+  constructor(public router: Router, private route: ActivatedRoute) {
+
   }
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(p => {
+      let sn = p['slide'];
+      if(sn) {
+        this.slideNumber = Number(sn);
+      }
+    });
+  }
+
+  addSlide(value) {
+    this.slideNumber += value;
+
+    if(this.slideNumber< 0){
+      this.slideNumber = 0;
+    }
+
+
+    const url = this.router.createUrlTree(['/'],  {
+      queryParams : {
+        slide: this.slideNumber
+      }
+    });
+    this.router.navigateByUrl(url.toString());
+
+  }
 
 }

@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-sound-snare-wave',
   templateUrl: './sound-snare-wave.component.html',
   styleUrls: ['./sound-snare-wave.component.scss']
 })
-export class SoundSnareWaveComponent implements OnInit {
-private audioContext: AudioContext;
-private soundEnabled = false;
-private source: AudioBufferSourceNode;
-
+export class SoundSnareWaveComponent extends AudioComponent implements OnInit, OnDestroy {
+  private source: AudioBufferSourceNode;
   multiplier = [];
   result = [];
   base = [];
@@ -22,7 +20,11 @@ private source: AudioBufferSourceNode;
   maxX = 1;
   private processing: boolean = false;
   constructor() {
-    this.audioContext = new AudioContext();
+    super()
+  }
+
+  ngOnInit() {
+    this.updateDecay();
   }
 
   toggleSound(value: boolean) {
@@ -35,8 +37,7 @@ private source: AudioBufferSourceNode;
       this.source.connect(this.audioContext.destination);
       this.source.start();
     } else {
-      this.source.stop();
-      this.source = null;
+      this.stopSound();
     }
   }
 
@@ -60,10 +61,6 @@ private source: AudioBufferSourceNode;
       }
     }
     return myArrayBuffer;
-  }
-
-  ngOnInit() {
-    this.updateDecay();
   }
 
   update() {
@@ -98,7 +95,18 @@ private source: AudioBufferSourceNode;
       this.processing = false;
     }, 10);
 
-
     this.update();
+  }
+
+  ngOnDestroy(): void {
+    this.stopSound();
+  }
+
+  stopSound(): void {
+    this.soundEnabled = false;
+    if(this.source) {
+      this.source.stop();
+      this.source = null;
+    }
   }
 }

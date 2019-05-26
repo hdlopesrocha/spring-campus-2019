@@ -1,19 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MusicService} from "../music.service";
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-sound-simple-demo',
   templateUrl: './sound-simple-demo.component.html',
   styleUrls: ['./sound-simple-demo.component.scss']
 })
-export class SoundSimpleDemoComponent implements OnInit {
-  private audioContext: AudioContext;
-  private soundEnabled = false;
+export class SoundSimpleDemoComponent extends AudioComponent implements OnInit, OnDestroy {
   private currentNoteName = '';
 
-  private oscilator: OscillatorNode;
   oscillatorFrequency = 0;
   keys = [];
+  private source: OscillatorNode;
 
   buildNote(name: string) {
     this.notes.push({frequency: this.noteService.getNoteFrequency(name), name: name});
@@ -32,7 +31,10 @@ export class SoundSimpleDemoComponent implements OnInit {
   };
 
   constructor(public noteService: MusicService) {
-    this.audioContext = new AudioContext();
+    super();
+  }
+
+  ngOnInit() {
     this.buildNote('F3');
     this.buildNote('F#3');
     this.buildNote('G3');
@@ -54,28 +56,35 @@ export class SoundSimpleDemoComponent implements OnInit {
     this.buildNote('B4');
   }
 
-  ngOnInit() {
-  }
-
   toggleSound(value: boolean) {
     this.soundEnabled = value;
     if (value) {
-      this.oscilator = this.audioContext.createOscillator();
-      this.oscilator.connect(this.audioContext.destination);
-      this.oscilator.start(0);
+      this.source = this.audioContext.createOscillator();
+      this.source.connect(this.audioContext.destination);
+      this.source.start(0);
       this.updateOscillatorFrequency();
-    } else {
-      this.oscilator.stop(0);
-      this.oscilator = null;
+    } else if(this.source) {
+      this.source.stop(0);
+      this.source = null;
     }
   }
 
   updateOscillatorFrequency() {
     this.currentNoteName = null;
-    if (this.oscilator) {
-      this.oscilator.frequency.value = this.oscillatorFrequency;
+    if (this.source) {
+      this.source.frequency.value = this.oscillatorFrequency;
     }
   }
 
+  ngOnDestroy(): void {
+    this.toggleSound(false);
+  }
 
+  stopSound(): void {
+    this.soundEnabled = false;
+    if(this.source) {
+      this.source.stop();
+      this.source = null;
+    }
+  }
 }

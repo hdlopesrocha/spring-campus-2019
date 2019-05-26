@@ -1,52 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-sound-player',
   templateUrl: './sound-player.component.html',
   styleUrls: ['./sound-player.component.scss']
 })
-export class SoundPlayerComponent implements OnInit {
+export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDestroy {
 
-  context :AudioContext;
-  private source: AudioBufferSourceNode;
   private analyser: AnalyserNode;
   private freqArray: Uint8Array;
   private dataArray: Uint8Array;
 
-  private  freqNormalized = [];
-  private  dataNormalized = [];
+  private freqNormalized = [];
+  private dataNormalized = [];
 
-  private isPlaying = false;
   private lastRender = 0;
   private time: number = 0;
   private maxFreq: number = 22050;
+  private source: AudioBufferSourceNode;
 
-  constructor() {
-    this.context = new AudioContext();
-  }
-
-  buildAudioSource () {
-    const that: SoundPlayerComponent = this;
-    this.source = this.context.createBufferSource();
-    this.source.loop = true;
-    this.analyser = this.context.createAnalyser();
-    this.source.connect(this.analyser);
-    this.analyser.connect(this.context.destination);
-    this.freqArray = new Uint8Array(this.analyser.frequencyBinCount);
-    this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
-    this.source.onended = function(event) {
-      that.isPlaying = false;
-    };
+  constructor()  {
+    super();
   }
 
   ngOnInit() {
     window.requestAnimationFrame(this.loop.bind(this));
   }
 
-
+  buildAudioSource () {
+    const that: SoundPlayerComponent = this;
+    this.source = this.audioContext.createBufferSource();
+    this.source.loop = true;
+    this.analyser = this.audioContext.createAnalyser();
+    this.source.connect(this.analyser);
+    this.analyser.connect(this.audioContext.destination);
+    this.freqArray = new Uint8Array(this.analyser.frequencyBinCount);
+    this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+    this.source.onended = function(event) {
+      that.soundEnabled = false;
+    };
+  }
 
   updateSoundData(){
-    if(this.isPlaying) {
+    if(this.soundEnabled) {
       this.analyser.getByteFrequencyData(this.freqArray);
       this.analyser.getByteTimeDomainData(this.dataArray);
 
@@ -68,11 +65,11 @@ export class SoundPlayerComponent implements OnInit {
   playSound(data) {
     const that: SoundPlayerComponent = this;
 
-    this.context.decodeAudioData(data, function(buffer) {
+    this.audioContext.decodeAudioData(data, function(buffer) {
       that.buildAudioSource();
       that.source.buffer = buffer;
       that.source.start(0);
-      that.isPlaying = true;
+      that.soundEnabled = true;
     });
   }
 
@@ -109,11 +106,22 @@ export class SoundPlayerComponent implements OnInit {
   }
 
   toggleSound(value: boolean, data: HTMLInputElement) {
-    if(!this.isPlaying) {
+    if(!this.soundEnabled) {
       data.click();
-    } else {
-      this.isPlaying = false;
+    } else if(this.source) {
+      this.stopSound();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopSound();
+  }
+
+  stopSound(): void {
+    this.soundEnabled = false;
+    if(this.source) {
       this.source.stop();
+      this.source = null;
     }
   }
 }

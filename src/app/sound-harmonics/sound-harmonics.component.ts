@@ -1,14 +1,13 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {MusicService} from "../music.service";
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-sound-harmonics',
   templateUrl: './sound-harmonics.component.html',
   styleUrls: ['./sound-harmonics.component.scss']
 })
-export class SoundHarmonicsComponent implements OnInit, AfterContentInit {
-  private audioContext: AudioContext;
-  private soundEnabled = false;
+export class SoundHarmonicsComponent extends AudioComponent implements OnInit, OnDestroy, AfterContentInit {
   private source: AudioBufferSourceNode;
   private analyser: AnalyserNode;
   private freqArray: Uint8Array;
@@ -28,7 +27,11 @@ export class SoundHarmonicsComponent implements OnInit, AfterContentInit {
   seed : number = this.initialSeed;
 
   constructor(public noteService: MusicService) {
-    this.audioContext = new AudioContext();
+    super();
+  }
+
+  ngOnInit() {
+    window.requestAnimationFrame(this.loop.bind(this));
   }
 
   buildAudioSource() {
@@ -51,9 +54,8 @@ export class SoundHarmonicsComponent implements OnInit, AfterContentInit {
     if(value) {
       this.buildAudioSource();
       this.source.start();
-    } else {
-      this.source.stop();
-      this.source = null;
+    } else if(this.source) {
+      this.stopSound();
     }
   }
 
@@ -108,10 +110,6 @@ export class SoundHarmonicsComponent implements OnInit, AfterContentInit {
     return x - Math.floor(x);
   }
 
-  ngOnInit() {
-    window.requestAnimationFrame(this.loop.bind(this));
-  }
-
   setIterations() {
     if(this.soundEnabled) {
       this.updateSound();
@@ -152,6 +150,18 @@ export class SoundHarmonicsComponent implements OnInit, AfterContentInit {
 
   private draw() {
     this.updateSoundAnalyserChart();
+  }
+
+  ngOnDestroy(): void {
+    this.stopSound();
+  }
+
+  stopSound(): void {
+    this.soundEnabled = false;
+    if(this.source) {
+      this.source.stop();
+      this.source = null;
+    }
   }
 
 }

@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-sound-kick-wave',
   templateUrl: './sound-kick-wave.component.html',
   styleUrls: ['./sound-kick-wave.component.scss']
 })
-export class SoundKickWaveComponent implements OnInit {
-private audioContext: AudioContext;
-private soundEnabled = false;
-private source: AudioBufferSourceNode;
+export class SoundKickWaveComponent extends AudioComponent implements OnInit, OnDestroy {
+  private source: AudioBufferSourceNode;
 
   multiplier = [];
   result = [];
@@ -21,7 +20,11 @@ private source: AudioBufferSourceNode;
   minX = 0;
   maxX = 1;
   constructor() {
-    this.audioContext = new AudioContext();
+    super();
+  }
+
+  ngOnInit() {
+    this.setIterations();
   }
 
   toggleSound(value: boolean) {
@@ -32,9 +35,8 @@ private source: AudioBufferSourceNode;
       this.source.loop = true;
       this.source.connect(this.audioContext.destination);
       this.source.start();
-    } else {
-      this.source.stop();
-      this.source = null;
+    } else if(this.source) {
+      this.stopSound();
     }
   }
 
@@ -65,10 +67,6 @@ private source: AudioBufferSourceNode;
     return myArrayBuffer;
   }
 
-  ngOnInit() {
-    this.setIterations();
-  }
-
   setIterations() {
     if(this.soundEnabled) {
       this.updateSound();
@@ -89,6 +87,18 @@ private source: AudioBufferSourceNode;
       this.multiplier.push({x:t, y:m});
       this.base.push({x:t, y:y});
       this.result.push({x:t, y:y*m});
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopSound();
+  }
+
+  stopSound(): void {
+    this.soundEnabled = false;
+    if(this.source) {
+      this.source.stop();
+      this.source = null;
     }
   }
 }

@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-sound-noise-wave',
   templateUrl: './sound-noise-wave.component.html',
   styleUrls: ['./sound-noise-wave.component.scss']
 })
-export class SoundNoiseWaveComponent implements OnInit {
-private audioContext: AudioContext;
-private soundEnabled = false;
-private source: AudioBufferSourceNode;
+export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, OnDestroy {
 
   samples = [];
   minX = 0;
   maxX = 1;
+  private source: AudioBufferSourceNode;
   constructor() {
-    this.audioContext = new AudioContext();
+    super();
   }
+  ngOnInit() {
+    this.setIterations();
+  }
+
 
   toggleSound(value: boolean) {
     this.soundEnabled = value;
@@ -26,8 +29,7 @@ private source: AudioBufferSourceNode;
       this.source.connect(this.audioContext.destination);
       this.source.start();
     } else {
-      this.source.stop();
-      this.source = null;
+      this.stopSound();
     }
   }
 
@@ -47,10 +49,6 @@ private source: AudioBufferSourceNode;
     return myArrayBuffer;
   }
 
-  ngOnInit() {
-    this.setIterations();
-  }
-
   setIterations() {
     if(this.soundEnabled) {
       this.updateSound();
@@ -63,6 +61,18 @@ private source: AudioBufferSourceNode;
     for (let t = this.minX; t <= this.maxX; t += 0.001 ) {
       let y = Math.random()*2-1;
       this.samples.push({x:t, y:y});
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopSound();
+  }
+
+  stopSound(): void {
+    this.soundEnabled = false;
+    if(this.source) {
+      this.source.stop();
+      this.source = null;
     }
   }
 }

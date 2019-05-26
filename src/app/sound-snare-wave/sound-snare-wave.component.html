@@ -1,55 +1,46 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="card mt-4">
-      <div class="card-header">
-        <h4>Snare (with decay)</h4>
-      </div>
-      <div class="card-body">
-        <div class="row">
+<div class="card-header">
+  <h4>Snare (with decay)</h4>
+</div>
+<div class="card-body">
+  <div class="row">
 
-          <div class="col-md-6" #divA>
-            <app-d3chart [points]="base" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
-            <div class="col-md-12" [mathjax] *ngIf="!processing">
-              $${{baseFormula}}$$
-            </div>
-          </div>
-
-          <div class="col-md-6" #divB>
-            <app-d3chart [points]="multiplier" [minX]="minX" [maxX]="maxX" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
-            <div class="col-md-12" [mathjax] *ngIf="!processing">
-              $${{multiplierFormula}}$$
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-
-          <div class="col-md-12" #divC>
-            <app-d3chart [points]="result" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divC.clientWidth-20" [height]="300"></app-d3chart>
-            <div class="col-md-12" [mathjax] *ngIf="!processing">
-              $${{resultFormula}}$$
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-md-12">
-          <div class="form">
-            <div class="form-group">
-              <label for="decay">Decay</label>
-              <input id="decay" class="form-control" type="range" min="0" max="30" step="0.1" [(ngModel)]="decay" (change)="updateDecay()"/> {{decay}}
-            </div>
-
-          </div>
-        </div>
-
-
-      </div>
-      <div class="card-footer">
-        <div class="pull-right">
-          <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
-        </div>
+    <div class="col-md-6" #divA>
+      <app-d3chart [points]="base" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+      <div class="col-md-12" [mathjax] *ngIf="!processing">
+        $${{baseFormula}}$$
       </div>
     </div>
+
+    <div class="col-md-6" #divB>
+      <app-d3chart [points]="multiplier" [minX]="minX" [maxX]="maxX" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
+      <div class="col-md-12" [mathjax] *ngIf="!processing">
+        $${{multiplierFormula}}$$
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12" #divC>
+      <app-d3chart [points]="result" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divC.clientWidth-20" [height]="300"></app-d3chart>
+      <div class="col-md-12" [mathjax] *ngIf="!processing">
+        $${{resultFormula}}$$
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form">
+      <div class="form-group">
+        <label for="decay">Decay</label>
+        <input id="decay" class="form-control" type="range" min="0" max="30" step="0.1" [(ngModel)]="decay" (change)="updateDecay()"/> {{decay}}
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="card-footer">
+  <div class="pull-right">
+    <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
   </div>
 </div>

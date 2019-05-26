@@ -1,11 +1,11 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-sound-square-fourier',
   templateUrl: './sound-square-fourier.component.html',
   styleUrls: ['./sound-square-fourier.component.scss']
 })
-export class SoundSquareFourierComponent implements OnInit, AfterContentInit {
+export class SoundSquareFourierComponent implements OnInit, AfterContentInit, OnDestroy {
   samplesFFT = [];
   iterations = 1;
   initialFormula = 'f(t) = \\frac{4A}{\\pi}\\sum_{k=1}^{\\infty} \\frac{\\sin((2k-1) \\times 2\\pi ft)}{2k-1}, f=1, A=1';
@@ -68,5 +68,8 @@ export class SoundSquareFourierComponent implements OnInit, AfterContentInit {
     this.setIterations();
   }
 
+  ngOnDestroy(): void {
+
+  }
 
 }

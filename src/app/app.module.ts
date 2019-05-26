@@ -23,6 +23,8 @@ import {SoundKickWaveComponent} from "./sound-kick-wave/sound-kick-wave.componen
 import {SoundSnareWaveComponent} from "./sound-snare-wave/sound-snare-wave.component";
 import { SoundPianoComponent } from './sound-piano/sound-piano.component';
 import {SoundHarmonicsComponent} from "./sound-harmonics/sound-harmonics.component";
+import { SoundTitleComponent } from './sound-title/sound-title.component';
+import { SoundWapiIntroComponent } from './sound-wapi-intro/sound-wapi-intro.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {SoundHarmonicsComponent} from "./sound-harmonics/sound-harmonics.compone
     SoundKickWaveComponent,
     SoundSnareWaveComponent,
     SoundPianoComponent,
-    SoundHarmonicsComponent
+    SoundHarmonicsComponent,
+    SoundTitleComponent,
+    SoundWapiIntroComponent
   ],
   imports: [
     ReactiveFormsModule,
