@@ -60,7 +60,6 @@ export class SoundSnareWaveComponent extends AudioComponent implements OnInit, O
         nowBuffering[i] = this.getValue(perc)* this.getMultiplier(perc);
       }
     }
-    return myArrayBuffer;
   }
 
   update() {

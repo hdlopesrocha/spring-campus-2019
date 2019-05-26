@@ -53,7 +53,6 @@ export class SoundSquareWaveComponent extends AudioComponent implements OnInit, 
         nowBuffering[i] = this.musicService.getSquare(t, A, f, this.iterations);
       }
     }
-    return myArrayBuffer;
   }
 
   setIterations() {

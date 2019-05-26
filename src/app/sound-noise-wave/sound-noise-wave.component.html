@@ -2,8 +2,11 @@
   <h4>White Noise</h4>
 </div>
 <div class="card-body">
-  <div class="col-md-12" #div12>
-    <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="div12.clientWidth-20" [height]="300"></app-d3chart>
+  <div class="col-md-12" #divA>
+    <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+  </div>
+  <div class="col-md-12" #divB>
+    <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
   </div>
 </div>
 <div class="card-footer">

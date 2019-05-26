@@ -55,7 +55,6 @@ export class SoundSawtoothWaveComponent extends AudioComponent implements OnInit
         nowBuffering[i] = this.musicService.getSawtooth(t, A, f, this.iterations);
       }
     }
-    return myArrayBuffer;
   }
 
   setIterations() {

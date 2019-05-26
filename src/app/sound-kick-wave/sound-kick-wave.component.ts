@@ -31,6 +31,7 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
     this.soundEnabled = value;
     if(value) {
       this.source = this.audioContext.createBufferSource();
+      this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
       this.updateSound();
       this.source.loop = true;
       this.source.connect(this.audioContext.destination);
@@ -39,11 +40,6 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
       this.stopSound();
     }
   }
-
-  updateSound() {
-    this.source.buffer = this.getSound();
-  }
-
 
   getMultiplier(t: number) {
     return Math.exp(-5*t);
@@ -54,8 +50,8 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
     return Math.sin(t*Math.PI*2*60);
   }
 
-  getSound() {
-    const myArrayBuffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
+  updateSound() {
+    const myArrayBuffer = this.source.buffer;
 
     for (let channel = 0; channel < myArrayBuffer.numberOfChannels; channel++) {
       const nowBuffering = myArrayBuffer.getChannelData(channel);
@@ -64,7 +60,6 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
         nowBuffering[i] = this.getValue(perc)* this.getMultiplier(perc);
       }
     }
-    return myArrayBuffer;
   }
 
   setIterations() {
