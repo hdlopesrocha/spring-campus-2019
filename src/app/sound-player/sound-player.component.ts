@@ -25,6 +25,20 @@ export class SoundPlayerComponent implements OnInit {
     this.context = new AudioContext();
   }
 
+  buildAudioSource () {
+    const that: SoundPlayerComponent = this;
+    this.source = this.context.createBufferSource();
+    this.source.loop = true;
+    this.analyser = this.context.createAnalyser();
+    this.source.connect(this.analyser);
+    this.analyser.connect(this.context.destination);
+    this.freqArray = new Uint8Array(this.analyser.frequencyBinCount);
+    this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+    this.source.onended = function(event) {
+      that.isPlaying = false;
+    };
+  }
+
   ngOnInit() {
     window.requestAnimationFrame(this.loop.bind(this));
   }
@@ -53,19 +67,10 @@ export class SoundPlayerComponent implements OnInit {
 
   playSound(data) {
     const that: SoundPlayerComponent = this;
-    this.source = this.context.createBufferSource();
-    this.analyser = this.context.createAnalyser();
-    this.source.connect(this.analyser);
-    this.analyser.connect(this.context.destination);
-    this.freqArray = new Uint8Array(this.analyser.frequencyBinCount);
-    this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
-    this.source.onended = function(event) {
-      that.isPlaying = false;
-    };
 
     this.context.decodeAudioData(data, function(buffer) {
+      that.buildAudioSource();
       that.source.buffer = buffer;
-      that.source.loop = true;
       that.source.start(0);
       that.isPlaying = true;
     });
@@ -109,7 +114,6 @@ export class SoundPlayerComponent implements OnInit {
     } else {
       this.isPlaying = false;
       this.source.stop();
-      this.source = null;
     }
   }
 }

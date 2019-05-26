@@ -1,4 +1,5 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {MusicService} from "../music.service";
 
 @Component({
   selector: 'app-sound-square-wave',
@@ -15,10 +16,11 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
   initialFormula = 'f(t) = \\frac{4A}{\\pi}\\sum_{k=1}^{\\infty} \\frac{\\sin((2k-1) \\times 2\\pi ft)}{2k-1}, f=1, A=1';
   minX = 0;
   maxX = 2;
+  soundFrequency = 220;
   private sums = '';
   private processing = false;
 
-  constructor() {
+  constructor(public musicService: MusicService) {
     this.audioContext = new AudioContext();
   }
 
@@ -40,21 +42,13 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
 
   updateSound() {
     const myArrayBuffer = this.source.buffer;
-
     const A = 1/2;
-    const f = 220;
-
+    const f = this.soundFrequency;
     for (let channel = 0; channel < myArrayBuffer.numberOfChannels; channel++) {
       const nowBuffering = myArrayBuffer.getChannelData(channel);
       for (let i = 0; i < myArrayBuffer.length; i++) {
-
         let t = (i/this.audioContext.sampleRate);
-        let x = 0;
-        for (let k = 1; k <= this.iterations ; ++k) {
-          x += Math.sin(2.0 * Math.PI * ( 2 * k - 1) * (f * t)) / ( 2 * k - 1 );
-        }
-        x = A * (4 / Math.PI) * x;
-        nowBuffering[i] = x;
+        nowBuffering[i] = this.musicService.getSquare(t, A, f, this.iterations);
       }
     }
     return myArrayBuffer;
@@ -103,13 +97,7 @@ export class SoundSquareWaveComponent implements OnInit, AfterContentInit {
     this.samples = [];
 
     for (let t = this.minX; t <= this.maxX; t += 0.005 ) {
-      let x = 0;
-      for (let k = 1; k <= this.iterations ; ++k) {
-        const n = 2 * k - 1;
-        x += Math.sin(2.0 * Math.PI * (n) * (f * t)) / (n);
-      }
-      x = A * (4 / Math.PI) * x;
-      this.samples.push({x:t, y:x});
+      this.samples.push({x:t, y: this.musicService.getSquare(t, A, f, this.iterations)});
     }
   }
 

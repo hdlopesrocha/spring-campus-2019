@@ -92,9 +92,9 @@ private source: AudioBufferSourceNode;
   updateDecay() {
     this.processing = true;
     setTimeout(() => {
-      this.multiplierFormula = 'f(t) = e^{-'+ this.decay+'t}';
+      this.multiplierFormula = 'g(t) = e^{-'+ this.decay+'t}';
       this.baseFormula = 'f(t) = random(t)';
-      this.resultFormula = 'f(t) = random(t) \\times e^{-'+ this.decay+'t}';
+      this.resultFormula = 'h(t) = f(t) \\times g(t)';
       this.processing = false;
     }, 10);
 

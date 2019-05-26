@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NoteService} from "../note.service";
+import {MusicService} from "../music.service";
 
 @Component({
   selector: 'app-sound-simple-demo',
@@ -25,12 +25,13 @@ export class SoundSimpleDemoComponent implements OnInit {
 
   notes = [ ];
 
-  pianoClick = function (i) {
-    this.setOscillatorFrequency(this.notes[i].frequency);
+  pianoClick(i) {
+    this.oscillatorFrequency = this.notes[i].frequency;
+    this.updateOscillatorFrequency();
     this.currentNoteName = this.notes[i].name;
   };
 
-  constructor(public noteService: NoteService) {
+  constructor(public noteService: MusicService) {
     this.audioContext = new AudioContext();
     this.buildNote('F3');
     this.buildNote('F#3');
@@ -69,13 +70,8 @@ export class SoundSimpleDemoComponent implements OnInit {
     }
   }
 
-  setOscillatorFrequency(value) {
-    this.currentNoteName = '';
-    this.oscillatorFrequency = value;
-    this.updateOscillatorFrequency();
-  }
-
   updateOscillatorFrequency() {
+    this.currentNoteName = null;
     if (this.oscilator) {
       this.oscilator.frequency.value = this.oscillatorFrequency;
     }

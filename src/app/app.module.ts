@@ -22,6 +22,7 @@ import {SoundPassFilterComponent} from "./sound-pass-filter/sound-pass-filter.co
 import {SoundKickWaveComponent} from "./sound-kick-wave/sound-kick-wave.component";
 import {SoundSnareWaveComponent} from "./sound-snare-wave/sound-snare-wave.component";
 import { SoundPianoComponent } from './sound-piano/sound-piano.component';
+import {SoundHarmonicsComponent} from "./sound-harmonics/sound-harmonics.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SoundPianoComponent } from './sound-piano/sound-piano.component';
     SoundPassFilterComponent,
     SoundKickWaveComponent,
     SoundSnareWaveComponent,
-    SoundPianoComponent
+    SoundPianoComponent,
+    SoundHarmonicsComponent
   ],
   imports: [
     ReactiveFormsModule,

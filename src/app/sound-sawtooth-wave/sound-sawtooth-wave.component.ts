@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MusicService} from "../music.service";
 
 @Component({
   selector: 'app-sound-sawtooth-wave',
@@ -17,7 +18,9 @@ export class SoundSawtoothWaveComponent implements OnInit {
   private processing = false;
   minX = 0;
   maxX = 2;
-  constructor() {
+  soundFrequency = 220;
+
+  constructor(public musicService: MusicService) {
     this.audioContext = new AudioContext();
   }
 
@@ -40,19 +43,13 @@ export class SoundSawtoothWaveComponent implements OnInit {
     const myArrayBuffer = this.source.buffer;
 
     const A = 1;
-    const f = 220;
+    const f = this.soundFrequency;
 
     for (let channel = 0; channel < myArrayBuffer.numberOfChannels; channel++) {
       const nowBuffering = myArrayBuffer.getChannelData(channel);
       for (let i = 0; i < myArrayBuffer.length; i++) {
-
         let t = (i/this.audioContext.sampleRate);
-        let x = 0;
-        for (let k = 1; k <= this.iterations ; ++k) {
-          x += Math.pow(-1, k) * Math.sin(2.0 * Math.PI *  k * f * t) / k;
-        }
-        x = (2 * A / Math.PI) * x;
-        nowBuffering[i] = x;
+        nowBuffering[i] = this.musicService.getSawtooth(t, A, f, this.iterations);
       }
     }
     return myArrayBuffer;
@@ -102,12 +99,7 @@ export class SoundSawtoothWaveComponent implements OnInit {
     this.samples = [];
 
     for (let t = this.minX; t <= this.maxX; t += 0.005 ) {
-      let x = 0;
-      for (let k = 1; k <= this.iterations ; ++k) {
-        x += Math.pow(-1, k) * Math.sin(2.0 * Math.PI *  k * f * t) / k;
-      }
-      x = (2 * A / Math.PI) * x;
-      this.samples.push({x:t, y:x});
+      this.samples.push({x:t, y: this.musicService.getSawtooth(t, A, f, this.iterations)});
     }
   }
 }

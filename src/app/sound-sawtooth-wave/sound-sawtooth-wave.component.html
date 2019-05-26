@@ -26,7 +26,7 @@
       </div>
       <div class="card-footer">
         <div class="pull-right">
-          <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
+          <small>(with f={{soundFrequency}}Hz)&nbsp;</small><app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
         </div>
       </div>
     </div>

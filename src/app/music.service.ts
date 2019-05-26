@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class NoteService {
+export class MusicService {
 
   frequencies = {
     "C0":   16.35,
@@ -152,7 +152,21 @@ export class NoteService {
 
   constructor() { }
 
+  getSquare(t: number, A: number, f :number, iterations: number) {
+    let x = 0;
+    for (let k = 1; k <= iterations ; ++k) {
+      x += Math.sin(2.0 * Math.PI * ( 2 * k - 1) * (f * t)) / ( 2 * k - 1 );
+    }
+    return A * (4 / Math.PI) * x;
+  }
 
+  getSawtooth(t: number, A: number, f :number, iterations: number) {
+    let x = 0;
+    for (let k = 1; k <= iterations ; ++k) {
+      x += Math.pow(-1, k) * Math.sin(2.0 * Math.PI *  k * f * t) / k;
+    }
+    return (2 * A / Math.PI) * x;
+  }
 
   getNoteFrequency(name: string) {
       return this.frequencies[name];

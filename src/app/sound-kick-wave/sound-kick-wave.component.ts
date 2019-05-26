@@ -14,9 +14,9 @@ private source: AudioBufferSourceNode;
   result = [];
   base = [];
 
-  multiplierFormula = 'f(t) = e^{-5t}';
+  multiplierFormula = 'g(t) = e^{-5t}';
   baseFormula = 'f(t) = sin(60 \\times 2\\pi t)';
-  resultFormula = 'f(t) = sin(60 \\times 2\\pi t) \\times e^{-5t}';
+  resultFormula = 'h(t) = f(t) \\times g(t)';
 
   minX = 0;
   maxX = 1;
