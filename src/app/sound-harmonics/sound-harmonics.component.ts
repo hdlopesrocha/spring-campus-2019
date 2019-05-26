@@ -81,7 +81,6 @@ export class SoundHarmonicsComponent extends AudioComponent implements OnInit, O
         nowBuffering[i] = this.signal(t, A, f, this.iterations);
       }
     }
-    return myArrayBuffer;
   }
 
   signal(t: number, A: number, f:number, iterations: number) {
