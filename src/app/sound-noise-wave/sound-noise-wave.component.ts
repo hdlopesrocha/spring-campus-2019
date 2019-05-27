@@ -7,10 +7,6 @@ import {AudioComponent} from "../audio.component";
   styleUrls: ['./sound-noise-wave.component.scss']
 })
 export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, OnDestroy {
-  private analyser: AnalyserNode;
-  private freqArray: Uint8Array;
-  private freqNormalized = [];
-  private maxFreq: number = 22050;
   private lastRender = 0;
   private time: number = 0;
   samples = [];
@@ -19,6 +15,11 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
   private source: AudioBufferSourceNode;
   constructor() {
     super();
+    this.source = this.audioContext.createBufferSource();
+    this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
+    this.source.loop = true;
+    this.source.connect(this.gainNode);
+    this.source.start();
   }
   ngOnInit() {
     this.setIterations();
@@ -26,24 +27,11 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
   }
 
 
-  buildAudioSource () {
-    this.source = this.audioContext.createBufferSource();
-    this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
-    this.source.loop = true;
-
-    this.analyser = this.audioContext.createAnalyser();
-    this.source.connect(this.analyser);
-    this.analyser.connect(this.audioContext.destination);
-    this.freqArray = new Uint8Array(this.analyser.frequencyBinCount);
-  }
-
-
   toggleSound(value: boolean) {
     this.soundEnabled = value;
     if(value) {
-      this.buildAudioSource();
       this.updateSound();
-      this.source.start();
+      this.startSound();
     } else {
       this.stopSound();
     }
@@ -61,15 +49,7 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
   }
 
   updateSoundData(){
-    if(this.soundEnabled) {
-      this.analyser.getByteFrequencyData(this.freqArray);
-
-      this.freqNormalized = [];
-      for(let i=0; i < this.freqArray.length; ++i) {
-        const perc = i / this.freqArray.length;
-        this.freqNormalized.push({ x: perc*this.maxFreq, y: this.freqArray[i]/255});
-      }
-    }
+    this.updateFrequencyArray();
   }
 
   setIterations() {
@@ -107,11 +87,4 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
     this.stopSound();
   }
 
-  stopSound(): void {
-    this.soundEnabled = false;
-    if(this.source) {
-      this.source.stop();
-      this.source = null;
-    }
-  }
 }

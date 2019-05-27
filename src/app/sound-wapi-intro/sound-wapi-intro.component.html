@@ -8,4 +8,17 @@
       <footer><cite>https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API</cite></footer>
     </blockquote>
   </div>
+    <div class="col-lg-12">
+
+    <br>Audio nodes are linked via their inputs and outputs, forming a chain that starts with one or more sources, goes through one or more nodes, then ends up at a destination.
+    <br><br>A simple, typical workflow for web audio would look something like this:
+    <ul>
+      <li>Create the audio context.</li>
+      <li>Inside the context, create sources — such as < audio >, oscillator, or stream.</li>
+      <li>Create effects nodes, such as reverb, biquad filter, panner, or compressor.</li>
+      <li>Choose the final destination for the audio, such as the user's computer speakers.</li>
+      <li>Establish connections from the audio sources through zero or more effects, eventually ending at the chosen destination.</li>
+    </ul>
+
+  </div>
 </div>

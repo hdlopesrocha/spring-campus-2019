@@ -7,16 +7,8 @@ import {AudioComponent} from "../audio.component";
   styleUrls: ['./sound-pass-filter.component.scss']
 })
 export class SoundPassFilterComponent extends AudioComponent implements OnInit, OnDestroy {
-
-  private analyser: AnalyserNode;
-  private freqArray: Uint8Array;
-
-  private freqNormalized = [];
-
   private lastRender = 0;
   private time: number = 0;
-  private maxFreq: number = 22050;
-
   public lowPass: number = 22050;
   public highPass: number = 0;
   private lowPassFilter: BiquadFilterNode;
@@ -27,72 +19,53 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
 
   constructor() {
     super();
+    this.lowPassFilter = this.audioContext.createBiquadFilter();
+    this.highPassFilter = this.audioContext.createBiquadFilter();
+    this.lowPassFilter.connect(this.highPassFilter).connect(this.gainNode);
+
+    this.setLowPass();
+    this.setHighPass();
   }
 
   ngOnInit() {
     window.requestAnimationFrame(this.loop.bind(this));
   }
 
-
-
   updateSoundData(){
-    if(this.soundEnabled) {
-      this.analyser.getByteFrequencyData(this.freqArray);
-
-      this.freqNormalized = [];
-      for(let i=0; i < this.freqArray.length; ++i) {
-        const perc = i / this.freqArray.length;
-        this.freqNormalized.push({ x: perc*this.maxFreq, y: this.freqArray[i]/255});
-      }
-    }
+    this.updateFrequencyArray();
   }
 
   setLowPass() {
-    if(this.soundEnabled) {
-      this.lowPassFilter.type = "lowpass";
-      this.lowPassFilter.frequency.value = this.lowPass;
-      this.highPassFilter.Q.value = 12;
-      this.highPassFilter.gain.value = 0;
-    }
+    this.lowPassFilter.type = "lowpass";
+    this.lowPassFilter.frequency.value = this.lowPass;
+    this.highPassFilter.Q.value = 12;
+    this.highPassFilter.gain.value = 0;
   }
 
   setHighPass() {
-    if(this.soundEnabled) {
-      this.highPassFilter.type = "highpass";
-      this.highPassFilter.frequency.value = this.highPass;
-      this.highPassFilter.Q.value = 12;
-      this.highPassFilter.gain.value = 0;
-    }
+    this.highPassFilter.type = "highpass";
+    this.highPassFilter.frequency.value = this.highPass;
+    this.highPassFilter.Q.value = 12;
+    this.highPassFilter.gain.value = 0;
   }
 
 
-  playSound(data) {
+  decodeSound(data) {
     const that: SoundPassFilterComponent = this;
-    this.source = this.audioContext.createBufferSource();
-    this.analyser = this.audioContext.createAnalyser();
-
-    this.lowPassFilter = this.audioContext.createBiquadFilter();
-    this.highPassFilter = this.audioContext.createBiquadFilter();
-    const gainNode = this.audioContext.createGain();
-
-    this.source.connect(this.lowPassFilter);
-    this.lowPassFilter.connect(this.highPassFilter);
-    this.highPassFilter.connect(gainNode);
-    gainNode.connect(this.analyser);
-    this.analyser.connect(this.audioContext.destination);
-
-    this.freqArray = new Uint8Array(this.analyser.frequencyBinCount);
-    this.source.onended = function(event) {
-      that.soundEnabled = false;
-    };
 
     this.audioContext.decodeAudioData(data, function(buffer) {
+      that.source = that.audioContext.createBufferSource();
+      that.source.onended = function(event) {
+        that.soundEnabled = false;
+        that.source.disconnect();
+      };
+
+      that.source.connect(that.lowPassFilter);
       that.soundEnabled = true;
-      that.setLowPass();
-      that.setHighPass();
       that.source.buffer = buffer;
       that.source.loop = true;
       that.source.start(0);
+      that.startSound();
     });
   }
 
@@ -105,7 +78,7 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
       reader.readAsArrayBuffer(file);
       reader.onload = function(e: ProgressEvent) {
         const arrayBuffer = e.target['result'];
-        that.playSound(arrayBuffer);
+        that.decodeSound(arrayBuffer);
       };
     }
   }
@@ -131,20 +104,13 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
   toggleSound(value: boolean, data: HTMLInputElement) {
     if(!this.soundEnabled) {
       data.click();
-    } else {
+    } else if(this.source){
       this.stopSound();
+      this.source.stop();
     }
   }
 
   ngOnDestroy(): void {
     this.stopSound();
-  }
-
-  stopSound(): void {
-    this.soundEnabled = false;
-    if(this.source) {
-      this.source.stop();
-      this.source = null;
-    }
   }
 }

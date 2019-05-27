@@ -21,6 +21,11 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
   maxX = 1;
   constructor() {
     super();
+    this.source = this.audioContext.createBufferSource();
+    this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
+    this.source.loop = true;
+    this.source.connect(this.gainNode);
+    this.source.start();
   }
 
   ngOnInit() {
@@ -30,12 +35,8 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
   toggleSound(value: boolean) {
     this.soundEnabled = value;
     if(value) {
-      this.source = this.audioContext.createBufferSource();
-      this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
       this.updateSound();
-      this.source.loop = true;
-      this.source.connect(this.audioContext.destination);
-      this.source.start();
+      this.startSound();
     } else if(this.source) {
       this.stopSound();
     }
@@ -63,9 +64,7 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
   }
 
   setIterations() {
-    if(this.soundEnabled) {
-      this.updateSound();
-    }
+    this.updateSound();
     this.updateChart();
   }
 
@@ -87,13 +86,5 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
 
   ngOnDestroy(): void {
     this.stopSound();
-  }
-
-  stopSound(): void {
-    this.soundEnabled = false;
-    if(this.source) {
-      this.source.stop();
-      this.source = null;
-    }
   }
 }

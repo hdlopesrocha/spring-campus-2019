@@ -8,16 +8,10 @@ import {AudioComponent} from "../audio.component";
 })
 export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDestroy {
 
-  private analyser: AnalyserNode;
-  private freqArray: Uint8Array;
-  private dataArray: Uint8Array;
 
-  private freqNormalized = [];
-  private dataNormalized = [];
 
   private lastRender = 0;
   private time: number = 0;
-  private maxFreq: number = 22050;
   private source: AudioBufferSourceNode;
 
   constructor()  {
@@ -28,48 +22,25 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
     window.requestAnimationFrame(this.loop.bind(this));
   }
 
-  buildAudioSource () {
-    const that: SoundPlayerComponent = this;
-    this.source = this.audioContext.createBufferSource();
-    this.source.loop = true;
-    this.analyser = this.audioContext.createAnalyser();
-    this.source.connect(this.analyser);
-    this.analyser.connect(this.audioContext.destination);
-    this.freqArray = new Uint8Array(this.analyser.frequencyBinCount);
-    this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
-    this.source.onended = function(event) {
-      that.soundEnabled = false;
-    };
-  }
-
   updateSoundData(){
-    if(this.soundEnabled) {
-      this.analyser.getByteFrequencyData(this.freqArray);
-      this.analyser.getByteTimeDomainData(this.dataArray);
-
-      this.freqNormalized = [];
-      this.dataNormalized = [];
-      for(let i=0; i < this.freqArray.length; ++i) {
-        const perc = i / this.freqArray.length;
-        this.freqNormalized.push({ x: perc*this.maxFreq, y: this.freqArray[i]/255});
-      }
-
-      for(let i=0; i < this.dataArray.length; ++i) {
-        const perc = i / this.dataArray.length;
-        this.dataNormalized.push({ x: perc, y: (2.0 * this.dataArray[i]/255.0) -1});
-      }
-
-    }
+    this.updateDataArray();
+    this.updateFrequencyArray();
   }
 
-  playSound(data) {
+  decodeSound(data) {
     const that: SoundPlayerComponent = this;
 
     this.audioContext.decodeAudioData(data, function(buffer) {
-      that.buildAudioSource();
+      that.source = that.audioContext.createBufferSource();
+      that.source.loop = true;
+      that.source.onended = function(event) {
+        that.soundEnabled = false;
+        that.source.disconnect();
+      };
       that.source.buffer = buffer;
       that.source.start(0);
-      that.soundEnabled = true;
+      that.source.connect(that.gainNode);
+      that.startSound();
     });
   }
 
@@ -82,7 +53,7 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
       reader.readAsArrayBuffer(file);
       reader.onload = function(e: ProgressEvent) {
         const arrayBuffer = e.target['result'];
-        that.playSound(arrayBuffer);
+        that.decodeSound(arrayBuffer);
       };
     }
   }
@@ -110,18 +81,11 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
       data.click();
     } else if(this.source) {
       this.stopSound();
+      this.source.stop(0);
     }
   }
 
   ngOnDestroy(): void {
     this.stopSound();
-  }
-
-  stopSound(): void {
-    this.soundEnabled = false;
-    if(this.source) {
-      this.source.stop();
-      this.source = null;
-    }
   }
 }

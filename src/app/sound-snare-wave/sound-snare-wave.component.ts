@@ -20,7 +20,12 @@ export class SoundSnareWaveComponent extends AudioComponent implements OnInit, O
   maxX = 1;
   private processing: boolean = false;
   constructor() {
-    super()
+    super();
+    this.source = this.audioContext.createBufferSource();
+    this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
+    this.source.loop = true;
+    this.source.connect(this.gainNode);
+    this.source.start();
   }
 
   ngOnInit() {
@@ -30,12 +35,8 @@ export class SoundSnareWaveComponent extends AudioComponent implements OnInit, O
   toggleSound(value: boolean) {
     this.soundEnabled = value;
     if(value) {
-      this.source = this.audioContext.createBufferSource();
-      this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
       this.updateSound();
-      this.source.loop = true;
-      this.source.connect(this.audioContext.destination);
-      this.source.start();
+      this.startSound();
     } else {
       this.stopSound();
     }
@@ -63,9 +64,7 @@ export class SoundSnareWaveComponent extends AudioComponent implements OnInit, O
   }
 
   update() {
-    if(this.soundEnabled) {
-      this.updateSound();
-    }
+    this.updateSound();
     this.updateChart();
   }
 
@@ -101,11 +100,4 @@ export class SoundSnareWaveComponent extends AudioComponent implements OnInit, O
     this.stopSound();
   }
 
-  stopSound(): void {
-    this.soundEnabled = false;
-    if(this.source) {
-      this.source.stop();
-      this.source = null;
-    }
-  }
 }

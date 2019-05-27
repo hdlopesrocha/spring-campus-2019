@@ -21,6 +21,11 @@ export class SoundSawtoothWaveComponent extends AudioComponent implements OnInit
 
   constructor(public musicService: MusicService) {
     super();
+    this.source = this.audioContext.createBufferSource();
+    this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
+    this.source.loop = true;
+    this.source.connect(this.gainNode);
+    this.source.start();
   }
 
   ngOnInit() {
@@ -31,12 +36,8 @@ export class SoundSawtoothWaveComponent extends AudioComponent implements OnInit
   toggleSound(value: boolean) {
     this.soundEnabled = value;
     if(value) {
-      this.source = this.audioContext.createBufferSource();
-      this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
       this.updateSound();
-      this.source.loop = true;
-      this.source.connect(this.audioContext.destination);
-      this.source.start();
+      this.startSound();
     } else {
       this.stopSound();
     }
@@ -105,11 +106,4 @@ export class SoundSawtoothWaveComponent extends AudioComponent implements OnInit
     this.stopSound();
   }
 
-  stopSound(): void {
-    this.soundEnabled = false;
-    if(this.source) {
-      this.source.stop();
-      this.source = null;
-    }
-  }
 }

@@ -1,0 +1,39 @@
+<pre #element style="display: none">
+this.audioContext = new AudioContext();
+this.oscillatorNode = this.audioContext.createOscillator();
+this.oscillatorNode.frequency.value = {{oscillatorNode.frequency.value}};
+this.oscillatorNode.type = '{{oscillatorNode.type}}';
+this.oscillatorNode.detune.type = '{{oscillatorNode.detune.value}}';
+this.oscillatorNode.connect(this.audioContext.destination);
+this.oscillatorNode.start(0);
+</pre>
+
+<div class="card-header">
+  <h4>Oscillator</h4>
+</div>
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-8">
+      <pre><code [highlight]="code"></code></pre>
+    </div>
+    <div class="col-md-4">
+      frequency: <input type="number" [(ngModel)]="oscillatorNode.frequency.value" (change)="updateHtml()"><br>
+      detune: <input type="number" [(ngModel)]="oscillatorNode.detune.value" (change)="updateHtml()"><br>
+      type: <select [(ngModel)]="oscillatorNode.type" (change)="updateHtml()">
+        <option value="sine">sine</option>
+        <option value="square">square</option>
+        <option value="sawtooth">sawtooth</option>
+        <option value="triangle">triangle</option>
+      </select>
+    </div>
+    <div class="col-md-6" #divA>
+      <app-d3chart [points]="dataNormalized" [minX]="0" [maxX]="1" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+    </div>
+    <div class="col-md-6" #divB>
+      <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
+    </div>
+  </div>
+</div>
+
+
+

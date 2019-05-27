@@ -14,6 +14,14 @@ export class SoundSimpleDemoComponent extends AudioComponent implements OnInit, 
   keys = [];
   private source: OscillatorNode;
 
+  constructor(public noteService: MusicService) {
+    super();
+    this.source = this.audioContext.createOscillator();
+    this.source.connect(this.gainNode);
+    this.source.start(0);
+  }
+
+
   buildNote(name: string) {
     this.notes.push({frequency: this.noteService.getNoteFrequency(name), name: name});
     let hash = name.indexOf('#') >= 0;
@@ -30,9 +38,6 @@ export class SoundSimpleDemoComponent extends AudioComponent implements OnInit, 
     this.currentNoteName = this.notes[i].name;
   };
 
-  constructor(public noteService: MusicService) {
-    super();
-  }
 
   ngOnInit() {
     this.buildNote('F3');
@@ -59,32 +64,24 @@ export class SoundSimpleDemoComponent extends AudioComponent implements OnInit, 
   toggleSound(value: boolean) {
     this.soundEnabled = value;
     if (value) {
-      this.source = this.audioContext.createOscillator();
-      this.source.connect(this.audioContext.destination);
-      this.source.start(0);
+      this.oscillatorFrequency = 0;
       this.updateOscillatorFrequency();
     } else if(this.source) {
-      this.source.stop(0);
-      this.source = null;
+      this.stopSound();
     }
   }
 
   updateOscillatorFrequency() {
     this.currentNoteName = null;
-    if (this.source) {
-      this.source.frequency.value = this.oscillatorFrequency;
+    this.source.frequency.value = this.oscillatorFrequency;
+    if (this.soundEnabled) {
+      const time = this.audioContext.currentTime;
+      this.gainNode.gain.setValueAtTime(1.0, time);
+      this.gainNode.gain.setTargetAtTime(0.0, time, 0.5);
     }
   }
 
   ngOnDestroy(): void {
-    this.toggleSound(false);
-  }
-
-  stopSound(): void {
-    this.soundEnabled = false;
-    if(this.source) {
-      this.source.stop();
-      this.source = null;
-    }
+    this.stopSound();
   }
 }
