@@ -32,6 +32,7 @@ import xml from 'highlight.js/lib/languages/xml';
 import scss from 'highlight.js/lib/languages/scss';
 import typescript from 'highlight.js/lib/languages/typescript';
 import {HighlightModule} from "ngx-highlightjs";
+import { WaveBackgroundComponent } from './wave-background/wave-background.component';
 
 export function hljsLanguages() {
   return [
@@ -63,7 +64,8 @@ export function hljsLanguages() {
     SoundHarmonicsComponent,
     SoundTitleComponent,
     SoundWapiIntroComponent,
-    SoundWapiOscillatorComponent
+    SoundWapiOscillatorComponent,
+    WaveBackgroundComponent
   ],
   imports: [
     ReactiveFormsModule,

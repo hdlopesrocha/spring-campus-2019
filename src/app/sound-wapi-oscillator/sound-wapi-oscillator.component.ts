@@ -25,6 +25,7 @@ export class SoundWapiOscillatorComponent implements OnInit, OnDestroy {
   private code = '';
   @ViewChild('element')
   element: ElementRef;
+  private animationFrame: number;
 
 
   constructor() { }
@@ -41,7 +42,7 @@ export class SoundWapiOscillatorComponent implements OnInit, OnDestroy {
       .connect(this.audioContext.destination);
 
     this.start();
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
     this.updateHtml();
   }
 
@@ -55,6 +56,7 @@ export class SoundWapiOscillatorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stop();
+    window.cancelAnimationFrame(this.animationFrame);
   }
 
 
@@ -83,7 +85,7 @@ export class SoundWapiOscillatorComponent implements OnInit, OnDestroy {
     this.update(progress);
     this.draw();
     this.lastRender = timestamp;
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   private update(progress: number) {

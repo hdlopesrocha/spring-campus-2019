@@ -14,6 +14,7 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
   private lowPassFilter: BiquadFilterNode;
   private highPassFilter: BiquadFilterNode;
   private source: AudioBufferSourceNode;
+  private animationFrame: number;
 
 
 
@@ -28,7 +29,7 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
   }
 
   ngOnInit() {
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   updateSoundData(){
@@ -90,7 +91,7 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
     this.update(progress);
     this.draw();
     this.lastRender = timestamp;
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   private update(progress: number) {
@@ -112,5 +113,6 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
 
   ngOnDestroy(): void {
     this.stopSound();
+    window.cancelAnimationFrame(this.animationFrame);
   }
 }

@@ -19,6 +19,7 @@ export class SoundHarmonicsComponent extends AudioComponent implements OnInit, O
   private time: number = 0;
   private initialSeed: number = 1;
   seed : number = this.initialSeed;
+  private animationFrame: number;
 
   constructor() {
     super();
@@ -30,7 +31,7 @@ export class SoundHarmonicsComponent extends AudioComponent implements OnInit, O
   }
 
   ngOnInit() {
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   toggleSound(value: boolean) {
@@ -111,7 +112,7 @@ export class SoundHarmonicsComponent extends AudioComponent implements OnInit, O
     this.update(progress);
     this.draw();
     this.lastRender = timestamp;
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   private update(progress: number) {
@@ -124,6 +125,7 @@ export class SoundHarmonicsComponent extends AudioComponent implements OnInit, O
 
   ngOnDestroy(): void {
     this.stopSound();
+    window.cancelAnimationFrame(this.animationFrame);
   }
 
 }

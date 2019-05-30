@@ -13,6 +13,7 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
   minX = 0;
   maxX = 1;
   private source: AudioBufferSourceNode;
+  private animationFrame: number;
   constructor() {
     super();
     this.source = this.audioContext.createBufferSource();
@@ -23,7 +24,7 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
   }
   ngOnInit() {
     this.setIterations();
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
 
@@ -72,7 +73,7 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
     this.update(progress);
     this.draw();
     this.lastRender = timestamp;
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   private update(progress: number) {
@@ -85,6 +86,7 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
 
   ngOnDestroy(): void {
     this.stopSound();
+    window.cancelAnimationFrame(this.animationFrame);
   }
 
 }

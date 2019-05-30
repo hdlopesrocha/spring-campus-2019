@@ -3,18 +3,17 @@
 
 
 
+<ul class="nav justify-content-end">
+  <li class="btn btn-info" (click)="addSlide(-1)">
+    <i class="fa fa-arrow-left"></i>
+  </li>
+  <li class="btn btn-info" (click)="addSlide(+1)">
+    <i class="fa fa-arrow-right"></i>
+  </li>
+</ul>
+
+<app-sound-title *ngIf="slideNumber == 0"></app-sound-title>
 <div class="container">
-  <ul class="nav justify-content-end">
-    <li class="btn btn-info" (click)="addSlide(-1)">
-      <i class="fa fa-arrow-left"></i>
-    </li>
-    <li class="btn btn-info" (click)="addSlide(+1)">
-      <i class="fa fa-arrow-right"></i>
-    </li>
-  </ul>
-
-  <app-sound-title class="row" *ngIf="slideNumber == 0"></app-sound-title>
-
   <div class="row">
     <div class="col-md-12">
         <app-sound-intro class="card" *ngIf="slideNumber == 1"></app-sound-intro>

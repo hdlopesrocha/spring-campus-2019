@@ -13,13 +13,14 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
   private lastRender = 0;
   private time: number = 0;
   private source: AudioBufferSourceNode;
+  private animationFrame: number;
 
   constructor()  {
     super();
   }
 
   ngOnInit() {
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   updateSoundData(){
@@ -65,7 +66,7 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
     this.update(progress);
     this.draw();
     this.lastRender = timestamp;
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   private update(progress: number) {
@@ -87,5 +88,6 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
 
   ngOnDestroy(): void {
     this.stopSound();
+    window.cancelAnimationFrame(this.animationFrame);
   }
 }

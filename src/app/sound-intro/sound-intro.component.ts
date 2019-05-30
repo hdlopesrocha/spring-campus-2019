@@ -15,6 +15,7 @@ export class SoundIntroComponent implements OnInit, OnDestroy {
   amplitude = 10;
   time = 0;
   lastRender = 0;
+  private animationFrame: number;
 
   constructor() {
 
@@ -33,10 +34,11 @@ export class SoundIntroComponent implements OnInit, OnDestroy {
       }
     }
 
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
   ngOnDestroy(): void {
+    window.cancelAnimationFrame(this.animationFrame);
   }
 
 
@@ -77,7 +79,7 @@ export class SoundIntroComponent implements OnInit, OnDestroy {
     this.update(progress);
     this.draw();
     this.lastRender = timestamp;
-    window.requestAnimationFrame(this.loop.bind(this));
+    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
 
