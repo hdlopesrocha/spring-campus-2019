@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {PerlinNoiseService} from "../perlin-noise.service";
+import {PerlinNoiseService} from '../perlin-noise.service';
 
 @Component({
   selector: 'app-wave-background',
@@ -33,11 +33,14 @@ export class WaveBackgroundComponent implements OnInit, OnDestroy {
 
     this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
 
+    const browser: any =  navigator;
 
+    browser.getUserMedia = (browser.getUserMedia ||
+      browser.webkitGetUserMedia ||
+      browser.mozGetUserMedia ||
+      browser.msGetUserMedia);
 
-    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-      .then(this.playSound);
-
+    browser.mediaDevices.getUserMedia({ audio: true, video: false }).then(this.playSound.bind(this));
   }
 
   updateSoundData(){
@@ -51,8 +54,9 @@ export class WaveBackgroundComponent implements OnInit, OnDestroy {
     this.initWebAudio();
     let source = this.audioContext.createMediaStreamSource(stream);
     source.connect(this.analyser);
+    this.analyser.disconnect();
     this.isPlaying = true;
-  };
+  }
 
   initWebAudio() {
     try {
@@ -122,10 +126,10 @@ export class WaveBackgroundComponent implements OnInit, OnDestroy {
   }
 
   getPoint(canvas: HTMLCanvasElement,cx,cy,cr,perc, t0, time,dataArray,freqArray) {
-    const i0 =  freqArray ? this.scale(perc,0,1,0, freqArray.length-1) : 0;
+    const i0 =  dataArray ? this.scale(perc,0,1,0, dataArray.length-1) : 0;
     const i0p = i0 - Math.floor(i0);
     const i0i = parseInt(i0);
-    const f0 = freqArray ?  freqArray[i0i]*(1-i0p)+freqArray[(i0i+1)%freqArray.length]*(i0p) : 0;
+    const f0 = dataArray ?  dataArray[i0i]*(1-i0p)+dataArray[(i0i+1)%dataArray.length]*(i0p) : 0;
 
     let f = f0*0.4;
     if (isNaN(f)) {
