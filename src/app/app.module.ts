@@ -33,6 +33,13 @@ import scss from 'highlight.js/lib/languages/scss';
 import typescript from 'highlight.js/lib/languages/typescript';
 import {HighlightModule} from "ngx-highlightjs";
 import { WaveBackgroundComponent } from './wave-background/wave-background.component';
+import { SoundDemoChainComponent } from './sound-demo-chain/sound-demo-chain.component';
+import { SoundQuestionsComponent } from './sound-questions/sound-questions.component';
+import { SoundDemoLinkComponent } from './sound-demo-link/sound-demo-link.component';
+import { SoundContactComponent } from './sound-contact/sound-contact.component';
+import { SoundCompareWavesComponent } from './sound-compare-waves/sound-compare-waves.component';
+import { SoundHarmonicsGeneratorComponent } from './sound-harmonics-generator/sound-harmonics-generator.component';
+import { SoundTimbreComponent } from './sound-timbre/sound-timbre.component';
 
 export function hljsLanguages() {
   return [
@@ -65,7 +72,14 @@ export function hljsLanguages() {
     SoundTitleComponent,
     SoundWapiIntroComponent,
     SoundWapiOscillatorComponent,
-    WaveBackgroundComponent
+    WaveBackgroundComponent,
+    SoundDemoChainComponent,
+    SoundQuestionsComponent,
+    SoundDemoLinkComponent,
+    SoundContactComponent,
+    SoundCompareWavesComponent,
+    SoundHarmonicsGeneratorComponent,
+    SoundTimbreComponent
   ],
   imports: [
     ReactiveFormsModule,

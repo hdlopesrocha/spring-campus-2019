@@ -1,8 +1,5 @@
 <!-- Page Content -->
 
-
-
-
 <ul class="nav justify-content-end">
   <li class="btn btn-info" (click)="addSlide(-1)">
     <i class="fa fa-arrow-left"></i>
@@ -13,23 +10,23 @@
 </ul>
 
 <app-sound-title *ngIf="slideNumber == 0"></app-sound-title>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-        <app-sound-intro class="card" *ngIf="slideNumber == 1"></app-sound-intro>
-        <app-sound-sin-form class="card" *ngIf="slideNumber == 2"></app-sound-sin-form>
-        <app-sound-simple-demo class="card" *ngIf="slideNumber == 3"></app-sound-simple-demo>
-        <app-sound-square-wave class="card" *ngIf="slideNumber == 4"></app-sound-square-wave>
-        <app-sound-sawtooth-wave class="card" *ngIf="slideNumber == 5"></app-sound-sawtooth-wave>
-        <app-sound-square-fourier class="card" *ngIf="slideNumber == 6"></app-sound-square-fourier>
-        <app-sound-player class="card" *ngIf="slideNumber == 7"></app-sound-player>
-        <app-sound-pass-filter class="card" *ngIf="slideNumber == 8"></app-sound-pass-filter>
-        <app-sound-noise-wave class="card" *ngIf="slideNumber == 9"></app-sound-noise-wave>
-        <app-sound-snare-wave class="card" *ngIf="slideNumber == 10"></app-sound-snare-wave>
-        <app-sound-kick-wave class="card" *ngIf="slideNumber == 11"></app-sound-kick-wave>
-        <app-sound-harmonics class="card" *ngIf="slideNumber == 12"></app-sound-harmonics>
-        <app-sound-wapi-intro class="card" *ngIf="slideNumber == 13"></app-sound-wapi-intro>
-        <app-sound-wapi-oscillator class="card" *ngIf="slideNumber == 14"></app-sound-wapi-oscillator>
-    </div>
-  </div>
-</div>
+<app-sound-intro *ngIf="slideNumber == 1"></app-sound-intro>
+<app-sound-sin-form *ngIf="slideNumber == 2"></app-sound-sin-form>
+<app-sound-simple-demo *ngIf="slideNumber == 3"></app-sound-simple-demo>
+<app-sound-square-wave *ngIf="slideNumber == 4"></app-sound-square-wave>
+<app-sound-sawtooth-wave *ngIf="slideNumber == 5"></app-sound-sawtooth-wave>
+<app-sound-compare-waves *ngIf="slideNumber == 6"></app-sound-compare-waves>
+<app-sound-square-fourier *ngIf="slideNumber == 7"></app-sound-square-fourier>
+<app-sound-player *ngIf="slideNumber == 8"></app-sound-player>
+<app-sound-pass-filter *ngIf="slideNumber == 9"></app-sound-pass-filter>
+<app-sound-noise-wave *ngIf="slideNumber == 10"></app-sound-noise-wave>
+<app-sound-snare-wave *ngIf="slideNumber == 11"></app-sound-snare-wave>
+<app-sound-kick-wave *ngIf="slideNumber == 12"></app-sound-kick-wave>
+<app-sound-harmonics *ngIf="slideNumber == 13"></app-sound-harmonics>
+<app-sound-harmonics-generator *ngIf="slideNumber == 14"></app-sound-harmonics-generator>
+<app-sound-wapi-intro *ngIf="slideNumber == 15"></app-sound-wapi-intro>
+<app-sound-wapi-oscillator *ngIf="slideNumber == 16"></app-sound-wapi-oscillator>
+<app-sound-demo-link *ngIf="slideNumber == 17"></app-sound-demo-link>
+<app-sound-demo-chain *ngIf="slideNumber == 18"></app-sound-demo-chain>
+<app-sound-questions *ngIf="slideNumber == 19"></app-sound-questions>
+<app-sound-contact *ngIf="slideNumber == 20"></app-sound-contact>

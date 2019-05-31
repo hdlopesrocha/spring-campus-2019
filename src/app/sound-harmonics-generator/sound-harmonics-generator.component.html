@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4>Square Wave</h4>
+          <h4>Harmonics</h4>
         </div>
         <div class="card-body">
           <div class="row">
@@ -13,6 +13,9 @@
                   <label for="squareIterations">Iterations</label>
                   <input id="squareIterations" class="form-control" type="range" min="0" max="30" step="1" [(ngModel)]="iterations" (change)="setIterations()"/> {{iterations}}
                 </div>
+                <div class="form-group">
+                  <div class="btn btn-info" (click)="randomize()">Randomize</div>
+                </div>
               </div>
             </div>
             <div class="col-md-12" #div12>
@@ -21,14 +24,14 @@
             <div class="col-md-12" [mathjax]>
               $${{initialFormula}}$$
             </div>
-            <div class="col-md-12" [mathjax] *ngIf="!processing">
-                $${{sums}}$$
+            <div class="col-md-12" #divB>
+              <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq/4" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
             </div>
           </div>
         </div>
         <div class="card-footer">
           <div class="pull-right">
-            <small>(with f={{soundFrequency}}Hz)&nbsp;</small><app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
+            <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
           </div>
         </div>
       </div>

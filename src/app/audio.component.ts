@@ -2,9 +2,9 @@ export abstract class AudioComponent {
 
   protected readonly audioContext: AudioContext;
   protected readonly gainNode: GainNode;
-  private analyser: AnalyserNode;
-  private readonly freqArray: Uint8Array;
-  private readonly dataArray: Uint8Array;
+  protected analyser: AnalyserNode;
+  protected readonly freqArray: Uint8Array;
+  protected readonly dataArray: Uint8Array;
   protected readonly maxFreq: number = 22050;
   protected freqNormalized = [];
   protected dataNormalized = [];

@@ -1,27 +1,32 @@
-<div class="card-header">
-  <h4>Fourier Transform (Square Wave)</h4>
-</div>
-<div class="card-body">
+<div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="form">
-        <div class="form-group">
-          <label for="squareIterations">Iterations</label>
-          <input id="squareIterations" class="form-control" type="range" min="0" max="30" step="1" [(ngModel)]="iterations" (change)="setIterations()"/> {{iterations}}
+      <div class="card">
+        <div class="card-header">
+          <h4>Fourier Transform (Square Wave)</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form">
+                <div class="form-group">
+                  <label for="squareIterations">Iterations</label>
+                  <input id="squareIterations" class="form-control" type="range" min="0" max="30" step="1" [(ngModel)]="iterations" (change)="setIterations()"/> {{iterations}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12" #divA>
+              <app-d3chart [points]="samplesFFT" [minX]="0" [maxX]="60" [minY]="0" [maxY]="1.5" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+            </div>
+            <div class="col-md-12" [mathjax]>
+              $${{initialFormula}}$$
+            </div>
+            <div class="col-md-12" [mathjax] *ngIf="!processing">
+                $${{sums}}$$
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-12" #divA>
-      <app-d3chart [points]="samplesFFT" [minX]="0" [maxX]="60" [minY]="0" [maxY]="1.5" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
-    </div>
-    <div class="col-md-12" [mathjax]>
-      $${{initialFormula}}$$
-    </div>
-    <div class="col-md-12" [mathjax] *ngIf="!processing">
-        $${{sums}}$$
-    </div>
   </div>
-</div>
-<div class="card-footer">
-
 </div>

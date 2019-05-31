@@ -1,16 +1,24 @@
-<div class="card-header">
-  <h4>White Noise</h4>
-</div>
-<div class="card-body">
-  <div class="col-md-12" #divA>
-    <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
-  </div>
-  <div class="col-md-12" #divB>
-    <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
-  </div>
-</div>
-<div class="card-footer">
-  <div class="pull-right">
-    <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>White Noise</h4>
+        </div>
+        <div class="card-body">
+          <div class="col-md-12" #divA>
+            <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+          </div>
+          <div class="col-md-12" #divB>
+            <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="pull-right">
+            <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

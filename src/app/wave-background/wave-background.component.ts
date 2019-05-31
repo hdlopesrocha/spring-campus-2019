@@ -1,29 +1,28 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {PerlinNoiseService} from '../perlin-noise.service';
+import {AudioComponent} from "../audio.component";
 
 @Component({
   selector: 'app-wave-background',
   templateUrl: './wave-background.component.html',
   styleUrls: ['./wave-background.component.scss']
 })
-export class WaveBackgroundComponent implements OnInit, OnDestroy {
+export class WaveBackgroundComponent extends AudioComponent implements OnInit, OnDestroy {
 
   time: number = 0;
   isPlaying = false;
-  source = null;
-  analyser = null;
-  freqArray:Uint8Array = null;
-  dataArray:Uint8Array = null;
   private lastRender=0;
 
   @ViewChild('canvas')
   public canvasRef: ElementRef;
   public canvas: HTMLCanvasElement;
   canvasContext: CanvasRenderingContext2D;
-  private audioContext: AudioContext;
   private animationFrame: number;
+  private source: MediaStreamAudioSourceNode;
 
-  constructor(public perlinNoiseService: PerlinNoiseService) { }
+  constructor(public perlinNoiseService: PerlinNoiseService) {
+    super();
+  }
 
   ngOnInit() {
     this.canvas = this.canvasRef.nativeElement;
@@ -44,39 +43,18 @@ export class WaveBackgroundComponent implements OnInit, OnDestroy {
   }
 
   updateSoundData(){
-    if(this.isPlaying) {
-      this.analyser.getByteFrequencyData(this.freqArray);
-      this.analyser.getByteTimeDomainData(this.dataArray);
-    }
+    this.updateFrequencyArray();
+    this.updateDataArray();
   }
 
   playSound(stream) {
-    this.initWebAudio();
-    let source = this.audioContext.createMediaStreamSource(stream);
-    source.connect(this.analyser);
+    this.source = this.audioContext.createMediaStreamSource(stream);
+    this.source.connect(this.analyser);
     this.analyser.disconnect();
     this.isPlaying = true;
   }
 
-  initWebAudio() {
-    try {
-      // Fix up for prefixing
-      this.audioContext = new AudioContext();
-      this.source = this.audioContext.createBufferSource();
-      this.analyser = this.audioContext.createAnalyser();
-      this.analyser.fftSize = 32;
-      this.source.connect(this.analyser);
-      this.analyser.connect(this.audioContext.destination);
-      this.freqArray = new Uint8Array(this.analyser.frequencyBinCount);
-      this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
-      this.source.onended = (event) => {
-        this.isPlaying = false;
-      }
-    }
-    catch(e) {
-      alert('Web Audio API is not supported in this browser');
-    }
-  }
+
 
   update(progress){
     this.time += progress;
@@ -169,6 +147,8 @@ export class WaveBackgroundComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     window.cancelAnimationFrame(this.animationFrame);
+    this.source.disconnect();
+    this.stopSound();
   }
 
 }

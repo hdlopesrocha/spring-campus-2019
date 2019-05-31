@@ -1,31 +1,35 @@
-<div class="card-header">
-  <h4>Musical Notes</h4>
-</div>
-<div class="card-body">
+<div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="form">
-        <div class="form-group">
-          <label for="oscillatorFrequency">Oscillator Frequency</label>
-          <input id="oscillatorFrequency" class="form-control" type="range" min="0" max="20000" step="50" [(ngModel)]="oscillatorFrequency" (change)="updateOscillatorFrequency()"/>
+      <div class="card">
+        <div class="card-header">
+          <h4>Musical Notes</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form">
+                <div class="form-group">
+                  <label for="oscillatorFrequency">Oscillator Frequency</label>
+                  <input id="oscillatorFrequency" class="form-control" type="range" min="0" max="20000" step="50" [(ngModel)]="oscillatorFrequency" (change)="updateOscillatorFrequency()"/>
 
-          <h3>{{oscillatorFrequency}}Hz {{currentNoteName ? '('+currentNoteName+')' : ''}}</h3>
+                  <h3>{{oscillatorFrequency}}Hz {{currentNoteName ? '('+currentNoteName+')' : ''}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                 <app-sound-piano [keys]="keys" [onClick]="pianoClick.bind(this)"></app-sound-piano>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="pull-right">
+           <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-         <app-sound-piano [keys]="keys" [onClick]="pianoClick.bind(this)"></app-sound-piano>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    *** Talk about the scale ***<br>
-
-  </div>
-</div>
-<div class="card-footer">
-  <div class="pull-right">
-   <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
   </div>
 </div>

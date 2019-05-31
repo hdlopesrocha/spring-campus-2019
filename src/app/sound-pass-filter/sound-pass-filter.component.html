@@ -1,34 +1,43 @@
-<div class="card-header">
-  <h4>Frequency filtering</h4>
-</div>
-<div class="card-body">
+<div class="container">
   <div class="row">
-    <div class="col-md-12" #divA>
-      <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
-    </div>
     <div class="col-md-12">
-      <div class="form">
-        <div class="form-group">
-          <label for="lowPass">Low pass filter</label>
-          <input id="lowPass" class="form-control" type="range" min="0" max="22050" step="50" [(ngModel)]="lowPass" (change)="setLowPass()"/> {{lowPass}}
-        </div>
+      <div class="card">
 
+        <div class="card-header">
+          <h4>Frequency filtering</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12" #divA>
+              <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+            </div>
+            <div class="col-md-12">
+              <div class="form">
+                <div class="form-group">
+                  <label for="lowPass">Low pass filter</label>
+                  <input id="lowPass" class="form-control" type="range" min="0" max="22050" step="50" [(ngModel)]="lowPass" (change)="setLowPass()"/> {{lowPass}}
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form">
+                <div class="form-group">
+                  <label for="highPass">High pass filter</label>
+                  <input id="highPass" class="form-control" type="range" min="0" max="22050" step="50" [(ngModel)]="highPass" (change)="setHighPass()"/> {{highPass}}
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="pull-right">
+            <input #data type="file" name="file" (change)="processFile(data)" style="display: none">
+            <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event, data)"></app-toggle-button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-12">
-      <div class="form">
-        <div class="form-group">
-          <label for="highPass">High pass filter</label>
-          <input id="highPass" class="form-control" type="range" min="0" max="22050" step="50" [(ngModel)]="highPass" (change)="setHighPass()"/> {{highPass}}
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div class="card-footer">
-  <div class="pull-right">
-    <input #data type="file" name="file" (change)="processFile(data)" style="display: none">
-    <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event, data)"></app-toggle-button>
   </div>
 </div>
