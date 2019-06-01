@@ -31,11 +31,16 @@ this.oscillatorNode.start(0);
               </select>
             </div>
             <div class="col-md-6" #divA>
-              <app-d3chart [points]="dataNormalized" [minX]="0" [maxX]="1" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+              <app-d3chart [points]="dataNormalized" [minX]="0" [maxX]="1" [minY]="-1.05" [maxY]="1.05" [width]="divA.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
             </div>
             <div class="col-md-6" #divB>
-              <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
+              <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="this.analyser.minDecibels" [maxY]="this.analyser.maxDecibels" [width]="divB.clientWidth-20" [height]="300" labelX="frequency (Hz)" labelY="amplitude (dB)"></app-d3chart>
             </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="pull-right">
+            <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
           </div>
         </div>
       </div>

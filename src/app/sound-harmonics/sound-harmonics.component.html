@@ -2,9 +2,101 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <p>
-          sound-harmonics works!
-        </p>
+        <div class="card-header">
+          <h4>Timbre</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12" #divE>
+              <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="this.analyser.minDecibels" [maxY]="this.analyser.maxDecibels" [width]="divE.clientWidth-20" [height]="300" labelX="frequency (Hz)" labelY="amplitude (dB)"></app-d3chart>
+            </div>
+            <div *ngIf="!selectedChart" class="col-md-3 text-center" #divA>
+              <h4>Acoustic Guitar</h4>
+              <app-d3chart *ngIf="guitar" [points]="guitarArray" strokeSize="1" [minX]="0" [maxX]="4" [minY]="-1.05" [maxY]="1.05" [width]="divA.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <div *ngIf="guitar" class="btn btn-success" (click)="play(guitar)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </div>
+              <div class="btn btn-info" (click)="toggleZoom(1)">
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div *ngIf="!selectedChart" class="col-md-3 text-center" #divB>
+              <h4>Electric Guitar</h4>
+              <app-d3chart *ngIf="electric" [points]="electricArray" strokeSize="1" [minX]="0" [maxX]="4" [minY]="-1.05" [maxY]="1.05" [width]="divB.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <div *ngIf="electric" class="btn btn-success" (click)="play(electric)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </div>
+              <div class="btn btn-info" (click)="toggleZoom(2)">
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div *ngIf="!selectedChart" class="col-md-3 text-center" #divC>
+              <h4>Piano</h4>
+              <app-d3chart *ngIf="piano" [points]="pianoArray" strokeSize="1" [minX]="0" [maxX]="4" [minY]="-1.05" [maxY]="1.05" [width]="divC.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <div *ngIf="piano" class="btn btn-success" (click)="play(piano)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </div>
+              <div class="btn btn-info" (click)="toggleZoom(3)">
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div *ngIf="!selectedChart" class="col-md-3 text-center" #divD>
+              <h4>Xylophone</h4>
+              <app-d3chart *ngIf="xylophone" [points]="xylophoneArray" strokeSize="1" [minX]="0" [maxX]="4" [minY]="-1.05" [maxY]="1.05" [width]="divD.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <div *ngIf="xylophone" class="btn btn-success" (click)="play(xylophone)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </div>
+              <div class="btn btn-info" (click)="toggleZoom(4)">
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <!-- Maximized version -->
+
+            <div *ngIf="selectedChart == 1" class="col-md-12 text-center" #divA>
+              <h4>Acoustic Guitar</h4>
+              <app-d3chart *ngIf="guitar" [points]="guitarArray" strokeSize="1" [minX]="0" [maxX]="4" [minY]="-1.05" [maxY]="1.05" [width]="divA.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <div *ngIf="guitar" class="btn btn-success" (click)="play(guitar)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </div>
+              <div class="btn btn-info" (click)="toggleZoom(1)">
+                <i class="fa fa-search-minus" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div *ngIf="selectedChart == 2" class="col-md-12 text-center" #divB>
+              <h4>Electric Guitar</h4>
+              <app-d3chart *ngIf="electric" [points]="electricArray" strokeSize="1" [minX]="0" [maxX]="4" [minY]="-1.05" [maxY]="1.05" [width]="divB.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <div *ngIf="electric" class="btn btn-success" (click)="play(electric)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </div>
+              <div class="btn btn-info" (click)="toggleZoom(2)">
+                <i class="fa fa-search-minus" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div *ngIf="selectedChart == 3" class="col-md-12 text-center" #divC>
+              <h4>Piano</h4>
+              <app-d3chart *ngIf="piano" [points]="pianoArray" strokeSize="1" [minX]="0" [maxX]="4" [minY]="-1.05" [maxY]="1.05" [width]="divC.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <div *ngIf="piano" class="btn btn-success" (click)="play(piano)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </div>
+              <div class="btn btn-info" (click)="toggleZoom(3)">
+                <i class="fa fa-search-minus" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div *ngIf="selectedChart == 4" class="col-md-12 text-center" #divD>
+              <h4>Xylophone</h4>
+              <app-d3chart *ngIf="xylophone" [points]="xylophoneArray" strokeSize="1" [minX]="0" [maxX]="4" [minY]="-1.05" [maxY]="1.05" [width]="divD.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <div *ngIf="xylophone" class="btn btn-success" (click)="play(xylophone)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </div>
+              <div class="btn btn-info" (click)="toggleZoom(4)">
+                <i class="fa fa-search-minus" aria-hidden="true"></i>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

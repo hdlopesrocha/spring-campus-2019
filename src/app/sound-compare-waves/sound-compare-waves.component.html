@@ -2,10 +2,35 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <p>
-          sound-compare-waves works!
-        </p>
+        <div class="card-header">
+          <h4>Wave comparison</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              frequency: <input type="number" [(ngModel)]="oscillatorNode.frequency.value"><br>
+              type: <select [(ngModel)]="oscillatorNode.type">
+              <option value="sine">sine</option>
+              <option value="square">square</option>
+              <option value="sawtooth">sawtooth</option>
+              <option value="triangle">triangle</option>
+            </select>
+            </div>
+            <div class="col-md-12" #divA>
+              <app-d3chart [points]="dataNormalized" [minX]="0" [maxX]="1" [minY]="-1.05" [maxY]="1.05" [width]="divA.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
+            </div>
+            <div class="col-md-12" #divB>
+              <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="this.analyser.minDecibels" [maxY]="this.analyser.maxDecibels" [width]="divB.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude (dB)"></app-d3chart>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="pull-right">
+            <app-toggle-button [value]="soundEnabled" (changeEmitter)="toggleSound($event)"></app-toggle-button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+

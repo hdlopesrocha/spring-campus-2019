@@ -7,9 +7,8 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-12" [mathjax]>
-              $${{initialFormula}}$$
-            </div>
+            <app-math-formula class="col-md-12" [formula]="initialFormula">
+            </app-math-formula>
             <div class="col-md-2">
               <div class="form">
                 <div class="form-group">
@@ -29,7 +28,7 @@
               </div>
             </div>
             <div class="col-md-10" #div10>
-              <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-5" [maxY]="5" [width]="div10.clientWidth-20" [height]="300"></app-d3chart>
+              <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-5" [maxY]="5" [width]="div10.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
             </div>
           </div>
         </div>

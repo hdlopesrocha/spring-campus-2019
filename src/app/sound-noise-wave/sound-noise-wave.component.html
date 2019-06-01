@@ -7,10 +7,10 @@
         </div>
         <div class="card-body">
           <div class="col-md-12" #divA>
-            <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
+            <app-d3chart [points]="samples" [minX]="minX" [maxX]="maxX" [minY]="-1.05" [maxY]="1.05" [width]="divA.clientWidth-20" [height]="300" labelX="time (s)" labelY="amplitude"></app-d3chart>
           </div>
           <div class="col-md-12" #divB>
-            <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
+            <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="this.analyser.minDecibels" [maxY]="this.analyser.maxDecibels" [width]="divB.clientWidth-20" [height]="300" labelX="frequency (Hz)" labelY="amplitude"></app-d3chart>
           </div>
         </div>
         <div class="card-footer">

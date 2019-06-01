@@ -19,7 +19,7 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
     this.source = this.audioContext.createBufferSource();
     this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
     this.source.loop = true;
-    this.source.connect(this.gainNode);
+    this.source.connect(this.master);
     this.source.start();
   }
   ngOnInit() {
@@ -47,10 +47,6 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
         nowBuffering[i] = Math.random()*2-1;
       }
     }
-  }
-
-  updateSoundData(){
-    this.updateFrequencyArray();
   }
 
   setIterations() {
@@ -81,7 +77,7 @@ export class SoundNoiseWaveComponent extends AudioComponent implements OnInit, O
   }
 
   private draw() {
-    this.updateSoundData();
+    this.updateFrequencyArray();
   }
 
   ngOnDestroy(): void {

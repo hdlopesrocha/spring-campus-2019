@@ -9,11 +9,12 @@ import {AudioComponent} from "../audio.component";
 export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDestroy {
 
 
-
+  private isBass = false;
   private lastRender = 0;
   private time: number = 0;
   private source: AudioBufferSourceNode;
   private animationFrame: number;
+  private margin: number = 0;
 
   constructor()  {
     super();
@@ -21,11 +22,6 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
 
   ngOnInit() {
     this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
-  }
-
-  updateSoundData(){
-    this.updateDataArray();
-    this.updateFrequencyArray();
   }
 
   decodeSound(data) {
@@ -40,7 +36,7 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
       };
       that.source.buffer = buffer;
       that.source.start(0);
-      that.source.connect(that.gainNode);
+      that.source.connect(that.master);
       that.startSound();
     });
   }
@@ -59,8 +55,6 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
     }
   }
 
-
-
   loop(timestamp) {
     let progress = timestamp - this.lastRender;
     this.update(progress);
@@ -74,15 +68,26 @@ export class SoundPlayerComponent extends AudioComponent implements OnInit, OnDe
   }
 
   private draw() {
-    this.updateSoundData();
+    this.updateFrequencyArray();
+
+    let bass = false;
+    for(let i = 0; i < 4; ++i) {
+      if(this.freqNormalized[i].y > -39) {
+        bass = true;
+        break;
+      }
+    }
+    this.isBass = bass;
+    this.margin = bass ? Math.round((Math.cos(this.time*Math.PI*2*10*0.001)+1)*4) : 0;
+    this.updateDataArray();
   }
 
   toggleSound(value: boolean, data: HTMLInputElement) {
     if(!this.soundEnabled) {
       data.click();
     } else if(this.source) {
-      this.stopSound();
       this.source.stop(0);
+      this.stopSound();
     }
   }
 

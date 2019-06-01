@@ -24,7 +24,7 @@ export class SoundKickWaveComponent extends AudioComponent implements OnInit, On
     this.source = this.audioContext.createBufferSource();
     this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
     this.source.loop = true;
-    this.source.connect(this.gainNode);
+    this.source.connect(this.master);
     this.source.start();
   }
 

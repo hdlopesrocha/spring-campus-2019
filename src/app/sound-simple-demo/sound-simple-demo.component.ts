@@ -17,7 +17,7 @@ export class SoundSimpleDemoComponent extends AudioComponent implements OnInit, 
   constructor(public noteService: MusicService) {
     super();
     this.source = this.audioContext.createOscillator();
-    this.source.connect(this.gainNode);
+    this.source.connect(this.master);
     this.source.start(0);
   }
 
@@ -76,8 +76,8 @@ export class SoundSimpleDemoComponent extends AudioComponent implements OnInit, 
     this.source.frequency.value = this.oscillatorFrequency;
     if (this.soundEnabled) {
       const time = this.audioContext.currentTime;
-      this.gainNode.gain.setValueAtTime(1.0, time);
-      this.gainNode.gain.setTargetAtTime(0.0, time, 0.5);
+      this.master.gain.setValueAtTime(1.0, time);
+      this.master.gain.setTargetAtTime(0.0, time, 0.5);
     }
   }
 

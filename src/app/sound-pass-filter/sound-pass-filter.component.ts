@@ -22,7 +22,7 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
     super();
     this.lowPassFilter = this.audioContext.createBiquadFilter();
     this.highPassFilter = this.audioContext.createBiquadFilter();
-    this.lowPassFilter.connect(this.highPassFilter).connect(this.gainNode);
+    this.lowPassFilter.connect(this.highPassFilter).connect(this.master);
 
     this.setLowPass();
     this.setHighPass();
@@ -32,22 +32,18 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
     this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
   }
 
-  updateSoundData(){
-    this.updateFrequencyArray();
-  }
-
   setLowPass() {
     this.lowPassFilter.type = "lowpass";
     this.lowPassFilter.frequency.value = this.lowPass;
-    this.highPassFilter.Q.value = 12;
-    this.highPassFilter.gain.value = 0;
+    //this.highPassFilter.Q.value = 20;
+    //this.highPassFilter.gain.value = 0;
   }
 
   setHighPass() {
     this.highPassFilter.type = "highpass";
     this.highPassFilter.frequency.value = this.highPass;
-    this.highPassFilter.Q.value = 12;
-    this.highPassFilter.gain.value = 0;
+    //this.highPassFilter.Q.value = 20;
+    //this.highPassFilter.gain.value = 0;
   }
 
 
@@ -99,7 +95,7 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
   }
 
   private draw() {
-    this.updateSoundData();
+    this.updateFrequencyArray();
   }
 
   toggleSound(value: boolean, data: HTMLInputElement) {

@@ -42,11 +42,6 @@ export class WaveBackgroundComponent extends AudioComponent implements OnInit, O
     browser.mediaDevices.getUserMedia({ audio: true, video: false }).then(this.playSound.bind(this));
   }
 
-  updateSoundData(){
-    this.updateFrequencyArray();
-    this.updateDataArray();
-  }
-
   playSound(stream) {
     this.source = this.audioContext.createMediaStreamSource(stream);
     this.source.connect(this.analyser);
@@ -61,7 +56,8 @@ export class WaveBackgroundComponent extends AudioComponent implements OnInit, O
   }
 
   draw() {
-    this.updateSoundData();
+    this.updateFrequencyArray();
+    this.updateDataArray();
     this.clearCanvas(this.canvasContext, this.canvas);
 
     for(let i=0; i < 256; ++i) {

@@ -1,33 +1,83 @@
-import {AfterContentInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AudioComponent} from "../audio.component";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-sound-harmonics',
   templateUrl: './sound-harmonics.component.html',
   styleUrls: ['./sound-harmonics.component.scss']
 })
-export class SoundHarmonicsComponent extends AudioComponent implements OnInit, OnDestroy, AfterContentInit {
-  private source: AudioBufferSourceNode;
-  private currentFrequency = 220;
+export class SoundHarmonicsComponent extends AudioComponent implements OnInit, OnDestroy {
 
-  samples = [];
-  iterations = 1;
-  initialFormula = 'g(k, a) = a \\times sin(2\\pi \\times kft) \\\\ f(t) = g(1, A) + \\sum_{k=2}^{\\infty} g(k, \\frac{A\\times random(0,1)}{e^{-(k-1)/4}}), f= '+ this.currentFrequency +', A=0.5';
-  minX = 0;
-  maxX = 4/this.currentFrequency;
   private lastRender = 0;
   private time: number = 0;
-  private initialSeed: number = 1;
-  seed : number = this.initialSeed;
   private animationFrame: number;
+  private piano: MediaElementAudioSourceNode;
+  private xylophone: MediaElementAudioSourceNode;
+  private guitar: MediaElementAudioSourceNode;
+  private electric: MediaElementAudioSourceNode;
+  private pianoArray = [];
+  private xylophoneArray = [];
+  private guitarArray = [];
+  private electricArray = [];
+  private selectedChart = 0;
 
-  constructor() {
+  private options = {
+    responseType: 'arraybuffer',
+    headers: {}
+  };
+
+
+  constructor(private httpClient: HttpClient) {
     super();
-    this.source = this.audioContext.createBufferSource();
-    this.source.buffer = this.audioContext.createBuffer(2, this.audioContext.sampleRate, this.audioContext.sampleRate);
-    this.source.loop = true;
-    this.source.connect(this.gainNode);
-    this.source.start();
+
+    this.loadAudio("assets/guitar.mp3", (source, buffer) => {
+      this.guitarArray = this.bufferToArray(buffer);
+      this.guitar = source;
+      source.connect(this.master);
+    });
+    this.loadAudio("assets/piano.mp3", (source, buffer) => {
+      this.pianoArray = this.bufferToArray(buffer);
+      this.piano = source;
+      source.connect(this.master);
+    });
+    this.loadAudio("assets/xylophone.mp3", (source, buffer) => {
+      this.xylophoneArray = this.bufferToArray(buffer);
+      this.xylophone = source;
+      source.connect(this.master);
+    });
+    this.loadAudio("assets/electric.mp3", (source, buffer) => {
+      this.electricArray = this.bufferToArray(buffer);
+      this.electric = source;
+      source.connect(this.master);
+    });
+
+  }
+
+  play(node: MediaElementAudioSourceNode){
+    this.startSound();
+    node.mediaElement.currentTime = 0;
+    node.mediaElement.play();
+  }
+
+  loadAudio(src: string, callback) {
+    const that: SoundHarmonicsComponent = this;
+    this.httpClient.get<ArrayBuffer>(src, this.options as {}).subscribe((data: ArrayBuffer) => {
+      this.audioContext.decodeAudioData( data, function(buffer) {
+        const audio = new Audio(src);
+        const source = that.audioContext.createMediaElementSource(audio);
+        callback(source, buffer);
+      });
+    });
+  }
+
+  bufferToArray(buffer: AudioBuffer) {
+    const array = new Array(buffer.length);
+    const data = buffer.getChannelData(0);
+    for(let i=0; i < data.length; ++i) {
+      array[i]= {x: i/buffer.sampleRate, y:data[i]};
+    }
+    return array;
   }
 
   ngOnInit() {
@@ -37,9 +87,8 @@ export class SoundHarmonicsComponent extends AudioComponent implements OnInit, O
   toggleSound(value: boolean) {
     this.soundEnabled = value;
     if(value) {
-      this.updateSound();
       this.startSound();
-    } else if(this.source) {
+    } else if(this.master) {
       this.stopSound();
     }
   }
@@ -47,65 +96,6 @@ export class SoundHarmonicsComponent extends AudioComponent implements OnInit, O
   updateSoundAnalyserChart(){
     this.updateFrequencyArray();
   }
-
-  updateSound() {
-    const myArrayBuffer = this.source.buffer;
-    const A = 1/2;
-    const f = this.currentFrequency;
-    for (let channel = 0; channel < myArrayBuffer.numberOfChannels; channel++) {
-      const nowBuffering = myArrayBuffer.getChannelData(channel);
-      for (let i = 0; i < myArrayBuffer.length; i++) {
-        let t = (i/this.audioContext.sampleRate);
-        nowBuffering[i] = this.signal(t, A, f, this.iterations);
-      }
-    }
-  }
-
-  signal(t: number, A: number, f:number, iterations: number) {
-    let x = 0;
-    this.seed = this.initialSeed;
-    for(let i =1; i <= iterations; ++i) {
-       let r = this.random() * 2.0- 1;
-       r = r < 0 ? 0 : r*0.25;
-       let a = i==1 ? A : A*r;
-       a *= Math.exp(-(i-1)/4);
-       x += a * Math.sin(2 * Math.PI * (f * (i)) * t);
-    }
-    return x;
-  }
-
-  randomize() {
-    this.initialSeed = Math.random()*99999;
-    this.setIterations();
-  }
-
-  random() {
-    const x = Math.abs(Math.sin(this.seed++) * 10000);
-    return x - Math.floor(x);
-  }
-
-  setIterations() {
-    this.updateSound();
-    this.updateChart();
-  }
-
-
-
-  updateChart() {
-    const A = 1/2;
-    const f = this.currentFrequency;
-    this.samples = [];
-    const inc = (this.maxX - this.minX)/1024;
-
-    for (let t = this.minX; t <= this.maxX; t += inc ) {
-      this.samples.push({x:t, y: this.signal(t,A,f, this.iterations)});
-    }
-  }
-
-  ngAfterContentInit(): void {
-    this.setIterations();
-  }
-
 
   loop(timestamp) {
     let progress = timestamp - this.lastRender;
@@ -128,4 +118,7 @@ export class SoundHarmonicsComponent extends AudioComponent implements OnInit, O
     window.cancelAnimationFrame(this.animationFrame);
   }
 
+  toggleZoom(number: number) {
+    this.selectedChart = this.selectedChart ? 0 : number;
+  }
 }

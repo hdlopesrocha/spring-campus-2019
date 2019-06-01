@@ -24,6 +24,12 @@ export class D3chartComponent implements OnInit {
   height: number;
 
   @Input()
+  strokeSize: number = 2;
+  @Input()
+  labelX: string = "";
+  @Input()
+  labelY: string = "";
+  @Input()
   minX: number;
   @Input()
   maxX: number;
@@ -59,6 +65,8 @@ export class D3chartComponent implements OnInit {
 
   private margin = {top: 20, right: 20, bottom: 30, left: 50};
   private svg: any;
+  private padding: number = 10;
+  private fontSize = 16;
 
   constructor() {
 
@@ -73,12 +81,8 @@ export class D3chartComponent implements OnInit {
     if(this.svg) {
       this.svg.remove();
     }
-    this.svg = d3.select(this.svgElement.nativeElement)
-      .append('g')
-      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+    this.svg = d3.select(this.svgElement.nativeElement).append('g');
   }
-
-
 
 
   draw() {
@@ -94,12 +98,27 @@ export class D3chartComponent implements OnInit {
 
     this.svg.append('g')
       .attr('class', 'axis axis--x')
-      .attr('transform', 'translate(0,' + h + ')')
+      .attr('transform', 'translate(' + this.margin.left+',' + h + ')')
       .call(d3Axis.axisBottom(xAxis));
 
     this.svg.append('g')
       .attr('class', 'axis axis--y')
+      .attr('transform', 'translate(' + this.margin.left + ',' + 0+ ')')
       .call(d3Axis.axisLeft(yAxis));
+
+    // now add titles to the axes
+    this.svg.append("text")
+      .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+      .attr("font-size", this.fontSize)
+      .attr("transform", "translate("+ (this.fontSize) +","+(this.height/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+      .text(this.labelY);
+
+    this.svg.append("text")
+      .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+      .attr("font-size", this.fontSize)
+      .attr("transform", "translate("+ (this.width/2) +","+(this.height-(this.padding/3))+")")  // centre below axis
+      .text(this.labelX);
+
 
     if(this.points && this.points.length) {
       const line = d3Shape.line()
@@ -108,6 +127,8 @@ export class D3chartComponent implements OnInit {
       this.svg.append('path')
         .datum(this.points)
         .attr('class', 'line')
+        .attr('transform', 'translate(' + this.margin.left + ',' + 0+ ')')
+        .attr('style', 'stroke-width: ' + this.strokeSize + 'px;')
         .attr('d', line);
     }
   }

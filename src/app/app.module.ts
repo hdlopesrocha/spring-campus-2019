@@ -40,6 +40,14 @@ import { SoundContactComponent } from './sound-contact/sound-contact.component';
 import { SoundCompareWavesComponent } from './sound-compare-waves/sound-compare-waves.component';
 import { SoundHarmonicsGeneratorComponent } from './sound-harmonics-generator/sound-harmonics-generator.component';
 import { SoundTimbreComponent } from './sound-timbre/sound-timbre.component';
+import { MathFormulaComponent } from './math-formula/math-formula.component';
+import {HttpClientModule} from "@angular/common/http";
+import { SoundCode01Component } from './sound-code01/sound-code01.component';
+import { SoundCode02Component } from './sound-code02/sound-code02.component';
+import { SoundCode03Component } from './sound-code03/sound-code03.component';
+import { SoundCode04Component } from './sound-code04/sound-code04.component';
+import { SoundCode05Component } from './sound-code05/sound-code05.component';
+import { SoundCode06Component } from './sound-code06/sound-code06.component';
 
 export function hljsLanguages() {
   return [
@@ -79,13 +87,21 @@ export function hljsLanguages() {
     SoundContactComponent,
     SoundCompareWavesComponent,
     SoundHarmonicsGeneratorComponent,
-    SoundTimbreComponent
+    SoundTimbreComponent,
+    MathFormulaComponent,
+    SoundCode01Component,
+    SoundCode02Component,
+    SoundCode03Component,
+    SoundCode04Component,
+    SoundCode05Component,
+    SoundCode06Component
   ],
   imports: [
     ReactiveFormsModule,
     FormsModule,
     AngularFontAwesomeModule,
     BrowserModule,
+    HttpClientModule,
     MathJaxModule.config(),
     HighlightModule.forRoot({
       languages: hljsLanguages

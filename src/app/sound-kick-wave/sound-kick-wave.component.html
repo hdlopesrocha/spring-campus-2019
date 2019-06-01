@@ -8,27 +8,24 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6" #divA>
-              <app-d3chart [points]="base" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divA.clientWidth-20" [height]="300"></app-d3chart>
-              <div class="col-md-12" [mathjax]>
-                $${{baseFormula}}$$
-              </div>
+              <app-d3chart [points]="base" [minX]="minX" [maxX]="maxX" [minY]="-1.05" [maxY]="1.05" [width]="divA.clientWidth-20" [height]="250" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <app-math-formula class="col-md-12" [formula]="baseFormula">
+              </app-math-formula>
             </div>
 
             <div class="col-md-6" #divB>
-              <app-d3chart [points]="multiplier" [minX]="minX" [maxX]="maxX" [minY]="0" [maxY]="1" [width]="divB.clientWidth-20" [height]="300"></app-d3chart>
-              <div class="col-md-12" [mathjax]>
-                $${{multiplierFormula}}$$
-              </div>
+              <app-d3chart [points]="multiplier" [minX]="minX" [maxX]="maxX" [minY]="0" [maxY]="1.05" [width]="divB.clientWidth-20" [height]="250" labelX="time (s)" labelY="amplitude"></app-d3chart>
+              <app-math-formula class="col-md-12" [formula]="multiplierFormula">
+              </app-math-formula>
             </div>
 
           </div>
           <div class="row">
             <div class="col-md-12" #divC>
-              <app-d3chart [points]="result" [minX]="minX" [maxX]="maxX" [minY]="-1" [maxY]="1" [width]="divC.clientWidth-20" [height]="300"></app-d3chart>
+              <app-d3chart [points]="result" [minX]="minX" [maxX]="maxX" [minY]="-1.05" [maxY]="1.05" [width]="divC.clientWidth-20" [height]="250" labelX="time (s)" labelY="amplitude"></app-d3chart>
 
-              <div class="col-md-12" [mathjax]>
-                $${{resultFormula}}$$
-              </div>
+              <app-math-formula class="col-md-12" [formula]="resultFormula">
+              </app-math-formula>
             </div>
           </div>
         </div>

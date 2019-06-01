@@ -7,15 +7,11 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-12">
-              <div class="form">
-                <div class="form-group">
-                  <label for="oscillatorFrequency">Oscillator Frequency</label>
-                  <input id="oscillatorFrequency" class="form-control" type="range" min="0" max="20000" step="50" [(ngModel)]="oscillatorFrequency" (change)="updateOscillatorFrequency()"/>
-
-                  <h3>{{oscillatorFrequency}}Hz {{currentNoteName ? '('+currentNoteName+')' : ''}}</h3>
-                </div>
-              </div>
+            <div class="col-md-4">
+              <label>Oscillator Frequency: {{oscillatorFrequency}}Hz {{currentNoteName ? '('+currentNoteName+')' : ''}}</label>
+            </div>
+            <div class="col-md-8">
+              <input class="form-control" type="range" min="0" max="20000" step="50" [(ngModel)]="oscillatorFrequency" (change)="updateOscillatorFrequency()"/>
             </div>
             <div class="row">
               <div class="col-md-12">
