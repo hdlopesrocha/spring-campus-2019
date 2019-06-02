@@ -19,13 +19,13 @@
                 <label>Noise length: {{noiseLength}}</label>
               </div>
               <div class="col-md-12">
-                <input class="form-control" type="range" min="1" max="100" step="1" [(ngModel)]="noiseLength"/>
+                <input class="form-control" type="range" min="1" max="100" step="1" [(ngModel)]="noiseLength" (change)="draw()"/>
               </div>
               <div class="col-md-12">
                 <label>Iterations: {{iterations}}</label>
               </div>
               <div class="col-md-12">
-                <input class="form-control" type="range" min="1" max="5" step="1" [(ngModel)]="iterations"/>
+                <input class="form-control" type="range" min="1" max="10" step="1" [(ngModel)]="iterations" (change)="draw()"/>
               </div>
             </div>
 

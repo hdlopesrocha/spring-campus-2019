@@ -8,10 +8,7 @@ import {PerlinNoiseService} from "../perlin-noise.service";
 })
 export class VideoCanvasCloudsComponent implements OnInit, OnDestroy {
 
-  time = 0;
-  lastRender = 0;
   noiseLength = 1.0;
-  private animationFrame: number;
   @ViewChild('canvas') public canvas: ElementRef;
   iterations: number = 1;
   initialFormula = 'f(x,y,l) = perlin2D(\\frac{x}{l}, \\frac{y}{l})  \\\\ g(x,y,l) = \\sum_{i=1}^{\\infty} \\frac{f(x,y,l/2^{i})}{2^{i}}';
@@ -21,33 +18,21 @@ export class VideoCanvasCloudsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
+    this.draw();
   }
 
   ngOnDestroy(): void {
-    window.cancelAnimationFrame(this.animationFrame);
+
   }
 
 
-  draw(time: number) {
+  draw() {
     const ctx: CanvasRenderingContext2D = this.canvas.nativeElement.getContext("2d");
     ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
-    this.drawPerlinToCanvas(ctx, this.canvas.nativeElement, time)
+    this.drawPerlinToCanvas(ctx, this.canvas.nativeElement)
   }
 
-  update(progress) {
-    this.time += progress;
-  }
-
-  loop(timestamp) {
-    const progress = timestamp - this.lastRender;
-    this.update(progress);
-    this.draw(this.time*0.001);
-    this.lastRender = timestamp;
-    this.animationFrame = window.requestAnimationFrame(this.loop.bind(this));
-  }
-
-  drawPerlinToCanvas(context: CanvasRenderingContext2D, canvas, time) {
+  drawPerlinToCanvas(context: CanvasRenderingContext2D, canvas) {
     const imgData = context.createImageData(canvas.width, canvas.height);
     const frequency = 1.0/this.noiseLength;
 
