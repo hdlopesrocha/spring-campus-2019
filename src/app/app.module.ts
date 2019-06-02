@@ -54,6 +54,7 @@ import { VideoCanvasNoiseComponent } from './video-canvas-noise/video-canvas-noi
 import {VideoCanvasCloudsComponent} from "./video-canvas-clouds/video-canvas-clouds.component";
 import {VideoCanvasMovingCloudsComponent} from "./video-canvas-moving-clouds/video-canvas-moving-clouds.component";
 import {VideoCanvasDemoLinkComponent} from "./video-canvas-demo-link/video-canvas-demo-link.component";
+import {QRCodeModule} from "angular2-qrcode";
 
 export function hljsLanguages() {
   return [
@@ -113,6 +114,7 @@ export function hljsLanguages() {
     FormsModule,
     AngularFontAwesomeModule,
     BrowserModule,
+    QRCodeModule,
     HttpClientModule,
     MathJaxModule.config(),
     HighlightModule.forRoot({

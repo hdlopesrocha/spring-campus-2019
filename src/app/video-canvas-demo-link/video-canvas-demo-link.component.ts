@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoCanvasDemoLinkComponent implements OnInit {
 
+  link: string = 'https://github.com/hdlopesrocha/spring-canvas';
   constructor() { }
 
   ngOnInit() {

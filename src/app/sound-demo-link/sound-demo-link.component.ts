@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sound-demo-link.component.scss']
 })
 export class SoundDemoLinkComponent implements OnInit {
+  link: string = 'https://github.com/hdlopesrocha/spring-piano';
 
   constructor() { }
 

@@ -7,8 +7,8 @@
         </div>
         <div class="card-body">
           <div class="col-md-12">
-            <h4>Source: <a href="https://github.com/hdlopesrocha/spring-piano">https://github.com/hdlopesrocha/spring-piano</a></h4>
-            <img style="width: 25%" src="assets/qrcode_piano.png">
+            <h4>Source: <a [href]="link">{{link}}</a></h4>
+            <qr-code [value]="link" [size]="300"></qr-code>
           </div>
         </div>
       </div>
