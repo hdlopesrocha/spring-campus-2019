@@ -53,6 +53,7 @@ import { VideoCanvasIntroComponent } from './video-canvas-intro/video-canvas-int
 import { VideoCanvasNoiseComponent } from './video-canvas-noise/video-canvas-noise.component';
 import {VideoCanvasCloudsComponent} from "./video-canvas-clouds/video-canvas-clouds.component";
 import {VideoCanvasMovingCloudsComponent} from "./video-canvas-moving-clouds/video-canvas-moving-clouds.component";
+import {VideoCanvasDemoLinkComponent} from "./video-canvas-demo-link/video-canvas-demo-link.component";
 
 export function hljsLanguages() {
   return [
@@ -104,7 +105,8 @@ export function hljsLanguages() {
     VideoCanvasIntroComponent,
     VideoCanvasNoiseComponent,
     VideoCanvasCloudsComponent,
-    VideoCanvasMovingCloudsComponent
+    VideoCanvasMovingCloudsComponent,
+    VideoCanvasDemoLinkComponent
   ],
   imports: [
     ReactiveFormsModule,
