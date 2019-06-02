@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-video-home',
+  templateUrl: './video-home.component.html',
+  styleUrls: ['./video-home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class VideoHomeComponent implements OnInit {
 
   slideNumber: number = 0;
 
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     }
 
 
-    const url = this.router.createUrlTree(['/'],  {
+    const url = this.router.createUrlTree(['/video'],  {
       queryParams : {
         slide: this.slideNumber
       }

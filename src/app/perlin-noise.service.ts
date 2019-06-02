@@ -326,5 +326,24 @@ export class PerlinNoiseService {
       v);
   };
 
+  // by hdlopesrocha
+  public myNoise3d(x,y,z,f) : number{
+    let v = this.simplex3(x*f, y*f, z*f);
+    return 0.5*(v+1);
+  }
+
+  // by hdlopesrocha
+  public myNoise3dx(x: number, y: number, z: number, f: number, it: number) : number {
+    let il = f;
+    let pe = 0.5;
+    let re = 0;
+    for(let i=0 ; i < it; ++i) {
+      re += pe*this.myNoise3d(x,y,z,il);
+      il*= 2;
+      pe*= 0.5;
+    }
+    return re;
+
+  }
 
 }

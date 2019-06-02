@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import {HomeComponent} from './home/home.component';
+import {SoundHomeComponent} from './sound-home/sound-home.component';
 import {CanvasChartComponent} from './canvas-chart/canvas-chart.component';
 import {SoundIntroComponent} from './sound-intro/sound-intro.component';
 import {SoundSquareWaveComponent} from './sound-square-wave/sound-square-wave.component';
@@ -39,7 +39,6 @@ import { SoundDemoLinkComponent } from './sound-demo-link/sound-demo-link.compon
 import { SoundContactComponent } from './sound-contact/sound-contact.component';
 import { SoundCompareWavesComponent } from './sound-compare-waves/sound-compare-waves.component';
 import { SoundHarmonicsGeneratorComponent } from './sound-harmonics-generator/sound-harmonics-generator.component';
-import { SoundTimbreComponent } from './sound-timbre/sound-timbre.component';
 import { MathFormulaComponent } from './math-formula/math-formula.component';
 import {HttpClientModule} from "@angular/common/http";
 import { SoundCode01Component } from './sound-code01/sound-code01.component';
@@ -48,6 +47,12 @@ import { SoundCode03Component } from './sound-code03/sound-code03.component';
 import { SoundCode04Component } from './sound-code04/sound-code04.component';
 import { SoundCode05Component } from './sound-code05/sound-code05.component';
 import { SoundCode06Component } from './sound-code06/sound-code06.component';
+import {VideoHomeComponent} from "./video-home/video-home.component";
+import {VideoTitleComponent} from "./video-title/video-title.component";
+import { VideoCanvasIntroComponent } from './video-canvas-intro/video-canvas-intro.component';
+import { VideoCanvasNoiseComponent } from './video-canvas-noise/video-canvas-noise.component';
+import {VideoCanvasCloudsComponent} from "./video-canvas-clouds/video-canvas-clouds.component";
+import {VideoCanvasMovingCloudsComponent} from "./video-canvas-moving-clouds/video-canvas-moving-clouds.component";
 
 export function hljsLanguages() {
   return [
@@ -60,7 +65,7 @@ export function hljsLanguages() {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    SoundHomeComponent,
     CanvasChartComponent,
     SoundIntroComponent,
     SoundSquareWaveComponent,
@@ -87,14 +92,19 @@ export function hljsLanguages() {
     SoundContactComponent,
     SoundCompareWavesComponent,
     SoundHarmonicsGeneratorComponent,
-    SoundTimbreComponent,
     MathFormulaComponent,
     SoundCode01Component,
     SoundCode02Component,
     SoundCode03Component,
     SoundCode04Component,
     SoundCode05Component,
-    SoundCode06Component
+    SoundCode06Component,
+    VideoHomeComponent,
+    VideoTitleComponent,
+    VideoCanvasIntroComponent,
+    VideoCanvasNoiseComponent,
+    VideoCanvasCloudsComponent,
+    VideoCanvasMovingCloudsComponent
   ],
   imports: [
     ReactiveFormsModule,
