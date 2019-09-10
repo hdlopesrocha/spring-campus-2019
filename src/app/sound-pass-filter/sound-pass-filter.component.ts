@@ -15,7 +15,51 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
   private highPassFilter: BiquadFilterNode;
   private source: AudioBufferSourceNode;
   private animationFrame: number;
+  private PI: number = Math.PI;
 
+  protected readonly frequencyResponseArray: Float32Array;
+  protected readonly lowPassAmplitudeResponseArray: Float32Array;
+  protected readonly highPassAmplitudeResponseArray: Float32Array;
+  protected readonly lowPassPhaseResponseArray: Float32Array;
+  protected readonly highPassPhaseResponseArray: Float32Array;
+
+
+  protected lpARA = [];
+  protected hpARA = [];
+  protected lpPRA = [];
+  protected hpPRA = [];
+
+  updateFrequencyResponseArray() {
+    if(this.analyser) {
+      this.analyser.getFloatFrequencyData(this.freqArray);
+    }
+    const l = this.frequencyResponseArray.length;
+
+    this.lowPassFilter.getFrequencyResponse(
+      this.frequencyResponseArray,
+      this.lowPassAmplitudeResponseArray,
+      this.lowPassPhaseResponseArray
+    );
+
+    this.highPassFilter.getFrequencyResponse(
+      this.frequencyResponseArray,
+      this.highPassAmplitudeResponseArray,
+      this.highPassPhaseResponseArray
+    );
+
+
+    this.lpARA = this.createArray(l,
+      (i) => this.frequencyResponseArray[i],
+      (i) => this.gainToDecibel(this.lowPassAmplitudeResponseArray[i])
+    );
+    this.hpARA = this.createArray(l,
+      (i) => this.frequencyResponseArray[i],
+      (i) => this.gainToDecibel(this.highPassAmplitudeResponseArray[i])
+    );
+    this.lpPRA = this.createArray(l, (i) => this.frequencyResponseArray[i], (i) => this.lowPassPhaseResponseArray[i]);
+    this.hpPRA = this.createArray(l, (i) => this.frequencyResponseArray[i], (i) => this.highPassPhaseResponseArray[i]);
+
+  }
 
 
   constructor() {
@@ -24,8 +68,20 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
     this.highPassFilter = this.audioContext.createBiquadFilter();
     this.lowPassFilter.connect(this.highPassFilter).connect(this.master);
 
+    this.frequencyResponseArray = new Float32Array(this.analyser.frequencyBinCount);
+    for(let i = 0; i < this.frequencyResponseArray.length; ++i) {
+      this.frequencyResponseArray[i] = (i/this.frequencyResponseArray.length)*this.maxFreq;
+    }
+
+
+    this.lowPassAmplitudeResponseArray = new Float32Array(this.analyser.frequencyBinCount);
+    this.highPassAmplitudeResponseArray = new Float32Array(this.analyser.frequencyBinCount);
+    this.lowPassPhaseResponseArray = new Float32Array(this.analyser.frequencyBinCount);
+    this.highPassPhaseResponseArray = new Float32Array(this.analyser.frequencyBinCount);
+
     this.setLowPass();
     this.setHighPass();
+    this.updateFrequencyResponseArray();
   }
 
   ngOnInit() {
@@ -37,6 +93,7 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
     this.lowPassFilter.frequency.value = this.lowPass;
     //this.highPassFilter.Q.value = 20;
     //this.highPassFilter.gain.value = 0;
+    this.updateFrequencyResponseArray();
   }
 
   setHighPass() {
@@ -44,6 +101,7 @@ export class SoundPassFilterComponent extends AudioComponent implements OnInit, 
     this.highPassFilter.frequency.value = this.highPass;
     //this.highPassFilter.Q.value = 20;
     //this.highPassFilter.gain.value = 0;
+    this.updateFrequencyResponseArray();
   }
 
 

@@ -8,11 +8,8 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-12" #divA>
-              <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="this.analyser.minDecibels" [maxY]="this.analyser.maxDecibels" [width]="divA.clientWidth-20" [height]="600"  labelX="frequency (Hz)" labelY="amplitude (dB)"></app-d3chart>
-            </div>
             <div class="col-md-3">
-               <label>Low pass filter: {{lowPass}} Hz</label>
+              <label>Low pass filter: {{lowPass}} Hz</label>
             </div>
             <div class="col-md-9">
               <input class="form-control" type="range" min="0" max="22050" step="50" [(ngModel)]="lowPass" (change)="setLowPass()"/>
@@ -23,7 +20,33 @@
             <div class="col-md-9">
               <input class="form-control" type="range" min="0" max="22050" step="50" [(ngModel)]="highPass" (change)="setHighPass()"/>
             </div>
+            <div class="col-md-12" #divA>
+              <app-d3chart [points]="freqNormalized" [minX]="0" [maxX]="maxFreq" [minY]="this.analyser.minDecibels" [maxY]="this.analyser.maxDecibels" [width]="divA.clientWidth-30" [height]="200"  labelX="frequency (Hz)" labelY="amplitude (dB)"></app-d3chart>
+            </div>
           </div>
+
+          <div class="row" #divB>
+            <div class="col-md-6">
+              <p class="text-center">Low Pass Filter Amplitude Response</p>
+              <app-d3chart [points]="lpARA" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="2" [width]="divB.clientWidth/2-30" [height]="200"  labelX="frequency (Hz)" labelY="gain"></app-d3chart>
+            </div>
+            <div class="col-md-6">
+              <p class="text-center">High Pass Filter Amplitude Response</p>
+              <app-d3chart [points]="hpARA" [minX]="0" [maxX]="maxFreq" [minY]="0" [maxY]="2" [width]="divB.clientWidth/2-30" [height]="200"  labelX="frequency (Hz)" labelY="gain"></app-d3chart>
+            </div>
+          </div>
+
+          <div class="row" #divC>
+            <div class="col-md-6">
+              <p class="text-center">Low Pass Filter Phase Response</p>
+              <app-d3chart [points]="lpPRA" [minX]="0" [maxX]="maxFreq" [minY]="-PI" [maxY]="PI" [width]="divC.clientWidth/2-30" [height]="200"  labelX="frequency (Hz)" labelY="phase (radians)"></app-d3chart>
+            </div>
+            <div class="col-md-6">
+              <p class="text-center">High Pass Filter Phase Response</p>
+              <app-d3chart [points]="hpPRA" [minX]="0" [maxX]="maxFreq" [minY]="-PI" [maxY]="PI" [width]="divC.clientWidth/2-30" [height]="200"  labelX="frequency (Hz)" labelY="phase (radians)"></app-d3chart>
+            </div>
+          </div>
+
         </div>
         <div class="card-footer">
           <div class="pull-right">

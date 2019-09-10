@@ -30,38 +30,46 @@ export abstract class AudioComponent {
     }
   }
 
+  createArray(len, xFunc, yFunc) {
+    const array = new Array(len);
+    for(let i=0; i < len; ++i) {
+      array[i] = { x: xFunc(i), y: yFunc(i)};
+    }
+    return array;
+  }
+
   updateDataArray() {
     if(this.analyser) {
       this.analyser.getByteTimeDomainData(this.dataArray);
     }
-    const array = new Array(this.dataArray.length);
-    for(let i=0; i < this.dataArray.length; ++i) {
-      const perc = i / this.dataArray.length;
-      array[i] = { x: perc, y: (2.0 * this.dataArray[i]/255.0) -1};
-    }
-    this.dataNormalized = array;
+    this.dataNormalized = this.createArray(
+      this.dataArray.length,
+      (i) => (i / this.dataArray.length),
+      (i) => 2.0*this.dataArray[i]/255.0-1);
   }
 
   decibelToGain(db: number) {
     return Math.pow(10, db/20);
   }
 
+  gainToDecibel(gain: number) {
+    // see https://www.w3.org/TR/webaudio/#filters-characteristics
+    //return 40*(Math.log10(gain));
+    return gain;
+  }
+
+  clamp(x, min, max) {
+    return x < min ? min : x > max ? max : x
+  }
+
   updateFrequencyArray() {
     if(this.analyser) {
       this.analyser.getFloatFrequencyData(this.freqArray);
     }
-    const array = new Array(this.freqArray.length);
-    for(let i=0; i < this.freqArray.length; ++i) {
-      const perc = i / this.freqArray.length;
-      let a = this.freqArray[i];
-      if (a < this.analyser.minDecibels) {
-        a = this.analyser.minDecibels;
-      } else if (a > this.analyser.maxDecibels) {
-        a = this.analyser.maxDecibels;
-      }
-      array[i] = { x: perc*this.maxFreq, y: a};
-    }
-    this.freqNormalized = array;
+    this.freqNormalized = this.createArray(
+      this.freqArray.length,
+      (i) => (i / this.freqArray.length)*this.maxFreq,
+      (i) => this.clamp(this.freqArray[i], this.analyser.minDecibels, this.analyser.maxDecibels));
   }
 
   startSound(): void {
