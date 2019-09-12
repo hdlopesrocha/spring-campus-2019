@@ -65,6 +65,11 @@ import {VideoWebglDiffuse1Component} from './video-webgl-diffuse1/video-webgl-di
 import {VideoWebglDiffuse2Component} from './video-webgl-diffuse2/video-webgl-diffuse2.component';
 import {VideoWebglSpecular1Component} from './video-webgl-specular1/video-webgl-specular1.component';
 import {VideoWebglSpecular2Component} from './video-webgl-specular2/video-webgl-specular2.component';
+import { SoundSawtoothExampleComponent } from './sound-sawtooth-example/sound-sawtooth-example.component';
+import { SoundSineExampleComponent } from './sound-sine-example/sound-sine-example.component';
+import { SoundSquareExampleComponent } from './sound-square-example/sound-square-example.component';
+import { SoundReferencesComponent } from './sound-references/sound-references.component';
+import { SoundArtistsComponent } from './sound-artists/sound-artists.component';
 
 export function hljsLanguages() {
   return [
@@ -126,7 +131,12 @@ export function hljsLanguages() {
     VideoWebglDiffuse1Component,
     VideoWebglDiffuse2Component,
     VideoWebglSpecular1Component,
-    VideoWebglSpecular2Component
+    VideoWebglSpecular2Component,
+    SoundSawtoothExampleComponent,
+    SoundSineExampleComponent,
+    SoundSquareExampleComponent,
+    SoundReferencesComponent,
+    SoundArtistsComponent
   ],
   imports: [
     ReactiveFormsModule,
