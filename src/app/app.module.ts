@@ -70,6 +70,9 @@ import { SoundSineExampleComponent } from './sound-sine-example/sound-sine-examp
 import { SoundSquareExampleComponent } from './sound-square-example/sound-square-example.component';
 import { SoundReferencesComponent } from './sound-references/sound-references.component';
 import { SoundArtistsComponent } from './sound-artists/sound-artists.component';
+import { SoundTestComponent } from './sound-test/sound-test.component';
+import { VideoTestComponent } from './video-test/video-test.component';
+import { VideoArtistsComponent } from './video-artists/video-artists.component';
 
 export function hljsLanguages() {
   return [
@@ -136,7 +139,10 @@ export function hljsLanguages() {
     SoundSineExampleComponent,
     SoundSquareExampleComponent,
     SoundReferencesComponent,
-    SoundArtistsComponent
+    SoundArtistsComponent,
+    SoundTestComponent,
+    VideoTestComponent,
+    VideoArtistsComponent
   ],
   imports: [
     ReactiveFormsModule,
