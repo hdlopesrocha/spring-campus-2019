@@ -16,6 +16,9 @@
             <div class="col-md-12" #divA>
               <app-d3chart [points]="samplesFFT" [minX]="0" [maxX]="60" [minY]="0" [maxY]="1.5" [width]="divA.clientWidth-20" [height]="300"  labelX="frequency (Hz)" labelY="amplitude"></app-d3chart>
             </div>
+            <div class="col-md-12">
+              The fundamental frequency is defined as the lowest frequency of a periodic waveform.
+            </div>
             <app-math-formula class="col-md-12" [formula]="initialFormula">
             </app-math-formula>
             <app-math-formula class="col-md-12" [formula]="sums">
