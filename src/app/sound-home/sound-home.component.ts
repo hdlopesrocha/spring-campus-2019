@@ -32,6 +32,7 @@ import {SoundReferencesComponent} from "../sound-references/sound-references.com
 import {SoundQuestionsComponent} from "../sound-questions/sound-questions.component";
 import {SoundContactComponent} from "../sound-contact/sound-contact.component";
 import {SoundArtistsComponent} from "../sound-artists/sound-artists.component";
+import {SoundEnvelopeComponent} from "../sound-envelope/sound-envelope.component";
 
 @Component({
   selector: 'app-sound-home',
@@ -58,10 +59,11 @@ export class SoundHomeComponent implements OnInit {
     SoundPlayerComponent,
     SoundPassFilterComponent,
     SoundNoiseWaveComponent,
+    SoundHarmonicsComponent,
+    SoundEnvelopeComponent,
     SoundSnareWaveComponent,
     SoundKickWaveComponent,
     SoundHarmonicsGeneratorComponent,
-    SoundHarmonicsComponent,
     SoundTestComponent,
     SoundWapiIntroComponent,
     SoundWapiOscillatorComponent,
