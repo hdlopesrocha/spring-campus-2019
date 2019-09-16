@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoTestComponent implements OnInit {
 
+  showAnswer: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  checkAnswer() {
+    this.showAnswer = true;
+  }
 }

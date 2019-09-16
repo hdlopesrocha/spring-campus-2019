@@ -8,13 +8,20 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              Which of the following aspects do you take into account to calculate diffuse light?
+              Which of the following are taken into account when calculating the diffuse light factor?
               <ul>
-                <li>A) Light Direction</li>
-                <li>B) Surface Normal Vector</li>
-                <li>C) Surface Normal Vector & Light Direction</li>
-                <li>D) Observer Position & Light Reflection with Surface</li>
+                <li>a) Eye position <i *ngIf="showAnswer" class="fa fa-times text-danger" aria-hidden="true"></i></li>
+                <li>b) Light direction & Eye position <i *ngIf="showAnswer" class="fa fa-times text-danger" aria-hidden="true"></i></li>
+                <li>c) Light direction & Surface normal vector <i *ngIf="showAnswer" class="fa fa-check text-success" aria-hidden="true"></i></li>
+                <li>d) Eye Position & Surface light reflection vector <i *ngIf="showAnswer" class="fa fa-times text-danger" aria-hidden="true"></i></li>
               </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="pull-right">
+            <div class="btn btn-success" (click)="checkAnswer()">
+              <i class="fa fa-check" aria-hidden="true"></i> Check answer
             </div>
           </div>
         </div>
