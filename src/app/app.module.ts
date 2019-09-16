@@ -74,6 +74,7 @@ import { SoundTestComponent } from './sound-test/sound-test.component';
 import { VideoTestComponent } from './video-test/video-test.component';
 import { VideoArtistsComponent } from './video-artists/video-artists.component';
 import { SoundEnvelopeComponent } from './sound-envelope/sound-envelope.component';
+import { VideoExtra01Component } from './video-extra01/video-extra01.component';
 
 export function hljsLanguages() {
   return [
@@ -144,7 +145,8 @@ export function hljsLanguages() {
     SoundTestComponent,
     VideoTestComponent,
     VideoArtistsComponent,
-    SoundEnvelopeComponent
+    SoundEnvelopeComponent,
+    VideoExtra01Component
   ],
   entryComponents: [
     AppComponent,
@@ -206,7 +208,8 @@ export function hljsLanguages() {
     SoundTestComponent,
     VideoTestComponent,
     VideoArtistsComponent,
-    SoundEnvelopeComponent
+    SoundEnvelopeComponent,
+    VideoExtra01Component
   ],
   imports: [
     ReactiveFormsModule,
