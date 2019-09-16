@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoWebglDiffuse2Component implements OnInit {
 
-  initialFormula = '\\text{DiffuseFactor}=L \\cdotp N \\\\ \\text{DiffuseColor} = \\text{LightColor}\\times\\text{DiffuseFactor} \\\\ \\text{Color}=\\text{MaterialColor}\\times \\text{DiffuseColor}';
+  initialFormula = '\\text{DiffuseFactor}=-L \\cdotp N \\\\ \\text{DiffuseColor} = \\text{LightColor}\\times\\text{DiffuseFactor} \\\\ \\text{Color}=\\text{MaterialColor}\\times \\text{DiffuseColor}';
 
 
   constructor() { }
