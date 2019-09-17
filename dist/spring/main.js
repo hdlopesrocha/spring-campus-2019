@@ -217,6 +217,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sound_envelope_sound_envelope_component__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ./sound-envelope/sound-envelope.component */ "./src/app/sound-envelope/sound-envelope.component.ts");
 /* harmony import */ var _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./video-extra01/video-extra01.component */ "./src/app/video-extra01/video-extra01.component.ts");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ./sound-pass-filter2/sound-pass-filter2.component */ "./src/app/sound-pass-filter2/sound-pass-filter2.component.ts");
+
 
 
 
@@ -366,7 +368,8 @@ var AppModule = /** @class */ (function () {
                 _video_artists_video_artists_component__WEBPACK_IMPORTED_MODULE_71__["VideoArtistsComponent"],
                 _sound_envelope_sound_envelope_component__WEBPACK_IMPORTED_MODULE_72__["SoundEnvelopeComponent"],
                 _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_73__["VideoExtra01Component"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_74__["HomeComponent"]
+                _home_home_component__WEBPACK_IMPORTED_MODULE_74__["HomeComponent"],
+                _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_75__["SoundPassFilter2Component"]
             ],
             entryComponents: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
@@ -429,7 +432,8 @@ var AppModule = /** @class */ (function () {
                 _video_test_video_test_component__WEBPACK_IMPORTED_MODULE_70__["VideoTestComponent"],
                 _video_artists_video_artists_component__WEBPACK_IMPORTED_MODULE_71__["VideoArtistsComponent"],
                 _sound_envelope_sound_envelope_component__WEBPACK_IMPORTED_MODULE_72__["SoundEnvelopeComponent"],
-                _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_73__["VideoExtra01Component"]
+                _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_73__["VideoExtra01Component"],
+                _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_75__["SoundPassFilter2Component"]
             ],
             imports: [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
@@ -2063,7 +2067,7 @@ var SoundCompareWavesComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Contact</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-3\">\n              <img style=\"width: 100%\" src=\"assets/photo.png\">\n            </div>\n            <div class=\"col-md-9\">\n              <h4>Henrique Rocha</h4>\n              <h5><i class=\"fa fa-envelope-o\"></i> hdlopesrocha91@gmail.com</h5>\n              <h5><i class=\"fa fa-instagram\"></i> hdlopesrocha91</h5>\n              <h5><i class=\"fa fa-github\"></i> https://github.com/hdlopesrocha</h5>\n\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Contact</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n              <img style=\"width: 100%\" src=\"assets/photo.png\">\n            </div>\n            <div class=\"col-md-5\">\n              <h4>Henrique Rocha</h4>\n              <h5><i class=\"fa fa-envelope-o\"></i> hdlopesrocha91@gmail.com</h5>\n              <h5><i class=\"fa fa-instagram\"></i> hdlopesrocha91</h5>\n              <h5><i class=\"fa fa-github\"></i> https://github.com/hdlopesrocha</h5>\n            </div>\n            <div class=\"col-md-5\">\n              <qr-code value=\"https://hdlopesrocha.github.io/spring-campus-2019/dist/spring/\" [size]=\"300\"></qr-code>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-12\">\n              <h3>\n                <a href=\"https://hdlopesrocha.github.io/spring-campus-2019/dist/spring/\">https://hdlopesrocha.github.io/spring-campus-2019/dist/spring/</a>\n              </h3>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2656,6 +2660,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sound_contact_sound_contact_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../sound-contact/sound-contact.component */ "./src/app/sound-contact/sound-contact.component.ts");
 /* harmony import */ var _sound_artists_sound_artists_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../sound-artists/sound-artists.component */ "./src/app/sound-artists/sound-artists.component.ts");
 /* harmony import */ var _sound_envelope_sound_envelope_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ../sound-envelope/sound-envelope.component */ "./src/app/sound-envelope/sound-envelope.component.ts");
+/* harmony import */ var _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../sound-pass-filter2/sound-pass-filter2.component */ "./src/app/sound-pass-filter2/sound-pass-filter2.component.ts");
+
 
 
 
@@ -2713,6 +2719,7 @@ var SoundHomeComponent = /** @class */ (function () {
             _sound_compare_waves_sound_compare_waves_component__WEBPACK_IMPORTED_MODULE_13__["SoundCompareWavesComponent"],
             _sound_player_sound_player_component__WEBPACK_IMPORTED_MODULE_14__["SoundPlayerComponent"],
             _sound_pass_filter_sound_pass_filter_component__WEBPACK_IMPORTED_MODULE_15__["SoundPassFilterComponent"],
+            _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_36__["SoundPassFilter2Component"],
             _sound_noise_wave_sound_noise_wave_component__WEBPACK_IMPORTED_MODULE_16__["SoundNoiseWaveComponent"],
             _sound_harmonics_sound_harmonics_component__WEBPACK_IMPORTED_MODULE_20__["SoundHarmonicsComponent"],
             _sound_envelope_sound_envelope_component__WEBPACK_IMPORTED_MODULE_35__["SoundEnvelopeComponent"],
@@ -3307,6 +3314,62 @@ var SoundPassFilterComponent = /** @class */ (function (_super) {
     ], SoundPassFilterComponent);
     return SoundPassFilterComponent;
 }(_audio_component__WEBPACK_IMPORTED_MODULE_2__["AudioComponent"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/sound-pass-filter2/sound-pass-filter2.component.html":
+/*!**********************************************************************!*\
+  !*** ./src/app/sound-pass-filter2/sound-pass-filter2.component.html ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n\n        <div class=\"card-header\">\n          <h4>Frequency filtering</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-4\">\n              <label>Low pass filter</label>\n              <img style=\"width: 100%\" src=\"assets/lowpass.png\">\n            </div>\n            <div class=\"col-md-4\">\n              <label>High pass filter</label>\n              <img style=\"width: 100%\" src=\"assets/highpass.png\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n          </div>\n\n\n\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/sound-pass-filter2/sound-pass-filter2.component.scss":
+/*!**********************************************************************!*\
+  !*** ./src/app/sound-pass-filter2/sound-pass-filter2.component.scss ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NvdW5kLXBhc3MtZmlsdGVyMi9zb3VuZC1wYXNzLWZpbHRlcjIuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/sound-pass-filter2/sound-pass-filter2.component.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/sound-pass-filter2/sound-pass-filter2.component.ts ***!
+  \********************************************************************/
+/*! exports provided: SoundPassFilter2Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SoundPassFilter2Component", function() { return SoundPassFilter2Component; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var SoundPassFilter2Component = /** @class */ (function () {
+    function SoundPassFilter2Component() {
+    }
+    SoundPassFilter2Component.prototype.ngOnInit = function () {
+    };
+    SoundPassFilter2Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-sound-pass-filter2',
+            template: __webpack_require__(/*! ./sound-pass-filter2.component.html */ "./src/app/sound-pass-filter2/sound-pass-filter2.component.html"),
+            styles: [__webpack_require__(/*! ./sound-pass-filter2.component.scss */ "./src/app/sound-pass-filter2/sound-pass-filter2.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], SoundPassFilter2Component);
+    return SoundPassFilter2Component;
+}());
 
 
 
@@ -5811,7 +5874,7 @@ var VideoWebglDiffuse1Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Diffuse Shading</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <img style=\"width: 100%\" src=\"assets/light.png\">\n            </div>\n            <div class=\"col-md-6\">\n              <app-math-formula class=\"col-md-12\" [formula]=\"initialFormula\">\n              </app-math-formula>\n            </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Diffuse Shading</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-5\">\n              <img style=\"width: 100%\" src=\"assets/light.png\">\n            </div>\n            <div class=\"col-md-7\">\n              <app-math-formula class=\"col-md-12\" [formula]=\"initialFormula\">\n              </app-math-formula>\n            </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -5842,7 +5905,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var VideoWebglDiffuse2Component = /** @class */ (function () {
     function VideoWebglDiffuse2Component() {
-        this.initialFormula = '\\text{DiffuseFactor}=L \\cdotp N \\\\ \\text{DiffuseColor} = \\text{LightColor}\\times\\text{DiffuseFactor} \\\\ \\text{Color}=\\text{MaterialColor}\\times \\text{DiffuseColor}';
+        this.initialFormula = '\\text{DiffuseFactor}=-L \\cdotp N \\\\ \\text{DiffuseColor} = \\text{LightColor}\\times\\text{DiffuseFactor} \\\\ \\text{Color}=\\text{MaterialColor}\\times \\text{DiffuseColor}';
     }
     VideoWebglDiffuse2Component.prototype.ngOnInit = function () {
     };
@@ -6094,7 +6157,7 @@ var VideoWebglSpecular1Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Specular Shading</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <img style=\"width: 100%\" src=\"assets/light.png\">\n            </div>\n            <div class=\"col-md-6\">\n              <app-math-formula class=\"col-md-12\" [formula]=\"initialFormula\">\n              </app-math-formula>\n            </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Specular Shading</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-5\">\n              <img style=\"width: 100%\" src=\"assets/light.png\">\n            </div>\n            <div class=\"col-md-7\">\n              <app-math-formula class=\"col-md-12\" [formula]=\"initialFormula\">\n              </app-math-formula>\n            </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
