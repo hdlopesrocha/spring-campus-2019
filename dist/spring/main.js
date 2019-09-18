@@ -218,6 +218,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./video-extra01/video-extra01.component */ "./src/app/video-extra01/video-extra01.component.ts");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ./sound-pass-filter2/sound-pass-filter2.component */ "./src/app/sound-pass-filter2/sound-pass-filter2.component.ts");
+/* harmony import */ var _video_ibo_video_ibo_component__WEBPACK_IMPORTED_MODULE_76__ = __webpack_require__(/*! ./video-ibo/video-ibo.component */ "./src/app/video-ibo/video-ibo.component.ts");
+/* harmony import */ var _video_references_video_references_component__WEBPACK_IMPORTED_MODULE_77__ = __webpack_require__(/*! ./video-references/video-references.component */ "./src/app/video-references/video-references.component.ts");
+
+
 
 
 
@@ -369,7 +373,9 @@ var AppModule = /** @class */ (function () {
                 _sound_envelope_sound_envelope_component__WEBPACK_IMPORTED_MODULE_72__["SoundEnvelopeComponent"],
                 _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_73__["VideoExtra01Component"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_74__["HomeComponent"],
-                _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_75__["SoundPassFilter2Component"]
+                _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_75__["SoundPassFilter2Component"],
+                _video_ibo_video_ibo_component__WEBPACK_IMPORTED_MODULE_76__["VideoIboComponent"],
+                _video_references_video_references_component__WEBPACK_IMPORTED_MODULE_77__["VideoReferencesComponent"]
             ],
             entryComponents: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
@@ -433,7 +439,9 @@ var AppModule = /** @class */ (function () {
                 _video_artists_video_artists_component__WEBPACK_IMPORTED_MODULE_71__["VideoArtistsComponent"],
                 _sound_envelope_sound_envelope_component__WEBPACK_IMPORTED_MODULE_72__["SoundEnvelopeComponent"],
                 _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_73__["VideoExtra01Component"],
-                _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_75__["SoundPassFilter2Component"]
+                _sound_pass_filter2_sound_pass_filter2_component__WEBPACK_IMPORTED_MODULE_75__["SoundPassFilter2Component"],
+                _video_ibo_video_ibo_component__WEBPACK_IMPORTED_MODULE_76__["VideoIboComponent"],
+                _video_references_video_references_component__WEBPACK_IMPORTED_MODULE_77__["VideoReferencesComponent"]
             ],
             imports: [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
@@ -3326,7 +3334,7 @@ var SoundPassFilterComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n\n        <div class=\"card-header\">\n          <h4>Frequency filtering</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-4\">\n              <label>Low pass filter</label>\n              <img style=\"width: 100%\" src=\"assets/lowpass.png\">\n            </div>\n            <div class=\"col-md-4\">\n              <label>High pass filter</label>\n              <img style=\"width: 100%\" src=\"assets/highpass.png\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n          </div>\n          <div class=\"row\">\n\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-8\">\n              <label>Be careful with phase changes</label>\n              <img style=\"width: 100%\" src=\"assets/cancelation.svg\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n          </div>\n\n\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n\n        <div class=\"card-header\">\n          <h4>Frequency filtering</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5 class=\"text-center\">Low pass filter</h5>\n              <img style=\"width: 100%\" src=\"assets/lowpass.png\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5 class=\"text-center\">High pass filter</h5>\n              <img style=\"width: 100%\" src=\"assets/highpass.png\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n          </div>\n          <div class=\"row\">\n\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-8\">\n              <label>Be careful with phase changes</label>\n              <img style=\"width: 100%\" src=\"assets/cancelation.svg\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n          </div>\n\n\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -3691,7 +3699,7 @@ var SoundReferencesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Sawtooth Wave Usages</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5>Bowed Strings (Violin)</h5>\n              <img style=\"width: 100%\" src=\"assets/violin.png\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5>Recorder</h5>\n              <img style=\"width: 100%\" src=\"assets/recorder.png\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Sawtooth Wave Usages</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5  class=\"text-center\">Bowed Strings (Violin)</h5>\n              <img style=\"width: 100%\" src=\"assets/violin.png\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5  class=\"text-center\">Recorder</h5>\n              <img style=\"width: 100%\" src=\"assets/recorder.png\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -4083,7 +4091,7 @@ var SoundSinFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Sine Wave Usages</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-4\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5>Tuning Fork</h5>\n              <img style=\"width: 100%\" src=\"assets/tuning.png\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Sine Wave Usages</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-4\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5  class=\"text-center\">Tuning Fork</h5>\n              <img style=\"width: 100%\" src=\"assets/tuning.png\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -4269,7 +4277,7 @@ var SoundSnareWaveComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Square Wave Usages</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5>Clarinet</h5>\n              <img style=\"width: 100%\" src=\"assets/clarinet.png\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5>Saxophone</h5>\n              <img style=\"width: 100%\" src=\"assets/saxophone.png\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Square Wave Usages</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5 class=\"text-center\">Clarinet</h5>\n              <img style=\"width: 100%\" src=\"assets/clarinet.png\">\n            </div>\n            <div class=\"col-md-4\">\n              <h5 class=\"text-center\">Saxophone</h5>\n              <img style=\"width: 100%\" src=\"assets/saxophone.png\">\n            </div>\n            <div class=\"col-md-2\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -5367,7 +5375,7 @@ var VideoCanvasNoiseComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Extra Demos</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"col-md-12\">\n            <ul>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/water-perlin-music/\">\n                  Water perlin noise\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/polar-perlin-music/\">\n                  Polar perlin noise\n                </a>\n\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/ripple-viz/\">\n                  Ripple visualization\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/radial-blur/\">\n                  Radial blur visualization\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/music-sphere/\">\n                  Music sphere\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/spiral-viz\">\n                  Spiral visualization\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Extra Demos</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"col-md-12\">\n            <ul>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/music-sphere/\">\n                  Music sphere\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/water-perlin-music/\">\n                  Water perlin noise\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/polar-perlin-music/\">\n                  Polar perlin noise\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/spiral-viz\">\n                  Spiral visualization\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/spring-webgl/\">\n                  3D water visualization\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/ripple-viz/\">\n                  Ripple visualization\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/radial-blur/\">\n                  Radial blur visualization\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://hdlopesrocha.github.io/texture-blend\">\n                  Texture blend\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.youtube.com/watch?v=wbpMiKiSKm8\">\n                  Perlin noise terrain generation\n                </a>\n              </li>\n              <li>\n                <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.youtube.com/watch?v=SgWlpXDJ79g\">\n                  Perlin noise clouds\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -5470,6 +5478,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sound_contact_sound_contact_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../sound-contact/sound-contact.component */ "./src/app/sound-contact/sound-contact.component.ts");
 /* harmony import */ var _video_artists_video_artists_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../video-artists/video-artists.component */ "./src/app/video-artists/video-artists.component.ts");
 /* harmony import */ var _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../video-extra01/video-extra01.component */ "./src/app/video-extra01/video-extra01.component.ts");
+/* harmony import */ var _video_ibo_video_ibo_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../video-ibo/video-ibo.component */ "./src/app/video-ibo/video-ibo.component.ts");
+/* harmony import */ var _video_references_video_references_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../video-references/video-references.component */ "./src/app/video-references/video-references.component.ts");
+
+
 
 
 
@@ -5509,6 +5521,7 @@ var VideoHomeComponent = /** @class */ (function () {
             _video_webgl_intro_video_webgl_intro_component__WEBPACK_IMPORTED_MODULE_9__["VideoWebglIntroComponent"],
             _video_webgl_pipepline_video_webgl_pipepline_component__WEBPACK_IMPORTED_MODULE_10__["VideoWebglPipeplineComponent"],
             _video_webgl_demo_link_video_webgl_demo_link_component__WEBPACK_IMPORTED_MODULE_11__["VideoWebglDemoLinkComponent"],
+            _video_ibo_video_ibo_component__WEBPACK_IMPORTED_MODULE_22__["VideoIboComponent"],
             _video_webgl_light_video_webgl_light_component__WEBPACK_IMPORTED_MODULE_12__["VideoWebglLightComponent"],
             _video_webgl_diffuse1_video_webgl_diffuse1_component__WEBPACK_IMPORTED_MODULE_13__["VideoWebglDiffuse1Component"],
             _video_webgl_diffuse2_video_webgl_diffuse2_component__WEBPACK_IMPORTED_MODULE_14__["VideoWebglDiffuse2Component"],
@@ -5516,6 +5529,7 @@ var VideoHomeComponent = /** @class */ (function () {
             _video_webgl_specular2_video_webgl_specular2_component__WEBPACK_IMPORTED_MODULE_16__["VideoWebglSpecular2Component"],
             _video_test_video_test_component__WEBPACK_IMPORTED_MODULE_17__["VideoTestComponent"],
             _video_extra01_video_extra01_component__WEBPACK_IMPORTED_MODULE_21__["VideoExtra01Component"],
+            _video_references_video_references_component__WEBPACK_IMPORTED_MODULE_23__["VideoReferencesComponent"],
             _video_questions_video_questions_component__WEBPACK_IMPORTED_MODULE_18__["VideoQuestionsComponent"],
             _sound_contact_sound_contact_component__WEBPACK_IMPORTED_MODULE_19__["SoundContactComponent"],
             _video_artists_video_artists_component__WEBPACK_IMPORTED_MODULE_20__["VideoArtistsComponent"]
@@ -5581,6 +5595,88 @@ var VideoHomeComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/video-ibo/video-ibo.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/video-ibo/video-ibo.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>Buffering</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-2\"></div>\n\n            <div class=\"col-md-4\">\n              <pre><code [highlight]=\"code\"></code></pre>\n            </div>\n\n\n            <div class=\"col-md-4\">\n              <img style=\"width: 100%\" src=\"assets/square.svg\">\n            </div>\n            <div class=\"col-md-2\"></div>\n\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/video-ibo/video-ibo.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/video-ibo/video-ibo.component.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3ZpZGVvLWliby92aWRlby1pYm8uY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/video-ibo/video-ibo.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/video-ibo/video-ibo.component.ts ***!
+  \**************************************************/
+/*! exports provided: VideoIboComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VideoIboComponent", function() { return VideoIboComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var VideoIboComponent = /** @class */ (function () {
+    function VideoIboComponent() {
+        this.code = "// WITHOUT INDEXING\n" +
+            "SingleVertex = [\n" +
+            "  // first  triangle\n" +
+            "  0, 0,\n" +
+            "  0, 1,\n" +
+            "  1, 0,\n" +
+            "  // second triangle\n" +
+            "  1, 0,\n" +
+            "  0, 1,\n" +
+            "  1, 1\n" +
+            "];\n" +
+            "\n" +
+            "// WITH INDEXING\n" +
+            "VertexBuffer = [\n" +
+            "  0, 0,\n" +
+            "  0, 1,\n" +
+            "  1, 0,\n" +
+            "  1, 1\n" +
+            "];\n" +
+            "\n" +
+            "IndexBuffer = [\n" +
+            "  // first  triangle\n" +
+            "  0, 1, 2\n" +
+            "  // second triangle\n" +
+            "  2, 1, 3\n" +
+            "];";
+    }
+    VideoIboComponent.prototype.ngOnInit = function () {
+    };
+    VideoIboComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-video-ibo',
+            template: __webpack_require__(/*! ./video-ibo.component.html */ "./src/app/video-ibo/video-ibo.component.html"),
+            styles: [__webpack_require__(/*! ./video-ibo.component.scss */ "./src/app/video-ibo/video-ibo.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], VideoIboComponent);
+    return VideoIboComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/video-questions/video-questions.component.html":
 /*!****************************************************************!*\
   !*** ./src/app/video-questions/video-questions.component.html ***!
@@ -5631,6 +5727,62 @@ var VideoQuestionsComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], VideoQuestionsComponent);
     return VideoQuestionsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/video-references/video-references.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/video-references/video-references.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>References</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-12\">\n              <ul>\n                <li>W3 Schools: HTML Canvas Reference\n                  <a href=\"https://www.w3schools.com/tags/ref_canvas.asp\">(link)</a>\n                </li>\n                <li>Khronos: OpenGL ES for the Web\n                  <a href=\"https://www.khronos.org/webgl/\">(link)</a>\n                </li>\n                <li>OpenGL: The Model, View and Projection matrices\n                  <a href=\"http://www.opengl-tutorial.org/beginners-tutorials/tutorial-3-matrices/#the-model-view-and-projection-matrices\">(link)</a>\n                </li>\n                <li>Android Jones: Microdose VR\n                  <a href=\"https://youtu.be/6nPrTm_QdCI?t=15\">(link)</a>\n                </li>\n              </ul>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/video-references/video-references.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/video-references/video-references.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3ZpZGVvLXJlZmVyZW5jZXMvdmlkZW8tcmVmZXJlbmNlcy5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/video-references/video-references.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/video-references/video-references.component.ts ***!
+  \****************************************************************/
+/*! exports provided: VideoReferencesComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VideoReferencesComponent", function() { return VideoReferencesComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var VideoReferencesComponent = /** @class */ (function () {
+    function VideoReferencesComponent() {
+    }
+    VideoReferencesComponent.prototype.ngOnInit = function () {
+    };
+    VideoReferencesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-video-references',
+            template: __webpack_require__(/*! ./video-references.component.html */ "./src/app/video-references/video-references.component.html"),
+            styles: [__webpack_require__(/*! ./video-references.component.scss */ "./src/app/video-references/video-references.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], VideoReferencesComponent);
+    return VideoReferencesComponent;
 }());
 
 
@@ -5931,7 +6083,7 @@ var VideoWebglDiffuse2Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>WebGL API</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-12\">\n              <blockquote>\n\n                \"WebGL is a cross-platform, royalty-free web standard for a low-level 3D graphics API based on OpenGL ES, exposed to ECMAScript via the HTML5 Canvas element.<br>\n                Developers familiar with OpenGL ES 2.0 will recognize WebGL as a Shader-based API using GLSL, with constructs that are semantically similar to those of the underlying OpenGL ES API.<br>\n                It stays very close to the OpenGL ES specification, with some concessions made for what developers expect out of memory-managed languages such as JavaScript.\"\n                <footer><cite>https://www.khronos.org/webgl/</cite></footer>\n              </blockquote>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>WebGL API</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-12\">\n              <blockquote>\n                \"WebGL is a cross-platform, royalty-free web standard for a low-level 3D graphics API based on OpenGL ES, exposed to ECMAScript via the HTML5 Canvas element.<br><br>\n                Developers familiar with OpenGL ES 2.0 will recognize WebGL as a Shader-based API using GLSL, with constructs that are semantically similar to those of the underlying OpenGL ES API.<br><br>\n                It stays very close to the OpenGL ES specification, with some concessions made for what developers expect out of memory-managed languages such as JavaScript.\"\n                <br>\n                <footer class=\"text-right\"><cite>https://www.khronos.org/webgl/</cite></footer>\n              </blockquote>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -6044,7 +6196,7 @@ var VideoWebglLightComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>WebGL Pipeline</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-3\">\n            </div>\n            <div class=\"col-md-6\">\n              <img style=\"width: 100%\" src=\"assets/pipeline.png\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h4>WebGL Pipeline</h4>\n        </div>\n        <div class=\"card-body\">\n          <div class=\"row\">\n            <div class=\"col-md-4\">\n            </div>\n            <div class=\"col-md-4\">\n              <img style=\"width: 100%\" src=\"assets/pipeline.png\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
