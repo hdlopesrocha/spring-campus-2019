@@ -78,6 +78,7 @@ import { VideoExtra01Component } from './video-extra01/video-extra01.component';
 import { HomeComponent } from './home/home.component';
 import { SoundPassFilter2Component } from './sound-pass-filter2/sound-pass-filter2.component';
 import { VideoIboComponent } from './video-ibo/video-ibo.component';
+import { VideoReferencesComponent } from './video-references/video-references.component';
 
 export function hljsLanguages() {
   return [
@@ -152,7 +153,8 @@ export function hljsLanguages() {
     VideoExtra01Component,
     HomeComponent,
     SoundPassFilter2Component,
-    VideoIboComponent
+    VideoIboComponent,
+    VideoReferencesComponent
   ],
   entryComponents: [
     AppComponent,
@@ -217,7 +219,8 @@ export function hljsLanguages() {
     SoundEnvelopeComponent,
     VideoExtra01Component,
     SoundPassFilter2Component,
-    VideoIboComponent
+    VideoIboComponent,
+    VideoReferencesComponent
   ],
   imports: [
     ReactiveFormsModule,
