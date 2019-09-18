@@ -20,6 +20,7 @@ import {SoundContactComponent} from "../sound-contact/sound-contact.component";
 import {VideoArtistsComponent} from "../video-artists/video-artists.component";
 import {VideoExtra01Component} from "../video-extra01/video-extra01.component";
 import {VideoIboComponent} from "../video-ibo/video-ibo.component";
+import {VideoReferencesComponent} from "../video-references/video-references.component";
 
 @Component({
   selector: 'app-video-home',
@@ -49,6 +50,7 @@ export class VideoHomeComponent implements OnInit {
     VideoWebglSpecular2Component,
     VideoTestComponent,
     VideoExtra01Component,
+    VideoReferencesComponent,
     VideoQuestionsComponent,
     SoundContactComponent,
     VideoArtistsComponent
