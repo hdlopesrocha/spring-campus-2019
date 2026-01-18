@@ -24,7 +24,7 @@
     "angular2-qrcode": "^2.0.3",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
-    "d3": "^5.9.2",
+    "d3": "^7.6.1",
     "font-awesome": "^4.7.0",
     "highlight.js": "^9.15.6",
     "ngx-highlightjs": "^3.0.3",
